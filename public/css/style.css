@@ -1629,41 +1629,42 @@ General Styles - Owlcarousel
     padding: 50px 0;
     background-color: rgba(229, 229, 229, 1);
     margin: 0 auto;
+    position: relative;
 }
 #contact::before{
-  content:"";
+  content: " ";
   position: absolute;
-  border-radius: 100%;
-  padding-bottom: 120px;
-  background-color: rgb(20, 33, 61);
-  width: 50px; 
-  height: 100px; 
+  background: radial-gradient(circle at 100% 0%, #7f4cec 0, #4d39c5 25%, #01259b 50%, #001372 75%, #00004d 100%);
+  width: 150px;
+  height: 300px;
   -moz-border-radius: 0 100px 100px 0;
-  -webkit-border-radius: 0 100px 100px 0;
+  -webkit-border-radius: 0 400px 400px 0;
   border-radius: 0 100px 100px 0;
-
+  top: -75px;
+  rotate: 90deg;
 }
 .contact-box{
     display: flex;
     justify-content: center;
     align-items:center;
-    width: 70%;
+    
     flex-direction:column;
     padding: 1em;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(138, 3, 3, 0.9);
     color: rgba(0,0,0,0.4);
-    height: 80%;
+ 
     position:relative;
+    border-radius: 50%;
 }
-.contact-box::before {
-  background-color: #066;
+.contact-box1{
   width: 100px;
-  height: 100px;
-  content:"";
-  border-radius: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
+     height: 100px;
+}
+.contact-box2{
+
+}
+.contact-box3{
+
 }
 
 .contact-box p{
@@ -1835,16 +1836,23 @@ Google map
   justify-content: center;
 }
 .bg-extension1{
-  background-color: rgb(61, 64, 91);
+  background-color: #772C0C;
+  border: 1px solid rgba(255,255,255);
 }
 .bg-extension2{
-  background-color: rgb(234, 70, 57);
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgba(0,0,0,0.2);
+  color: #7b7979 !important;
+
+  
 }
+
 .extension-container img{
    width: 100%;
 }
 
 .extension-container{
+  position: relative;
   display: flex;
   justify-content: space-around;
   align-content: center;
@@ -1859,6 +1867,7 @@ Google map
   box-shadow: 0px -1px 40px -6px rgba(0,0,0,0.1);
   -webkit-box-shadow: 0px -1px 40px -6px rgba(0,0,0,0.1);
   -moz-box-shadow: 0px -1px 40px -6px rgba(0,0,0,0.1);
+  margin-bottom: 2em;
 }
 .extension-container--img{
   width: 100%;  
@@ -1906,6 +1915,7 @@ Google map
     left: 0;
     right: 0;
     font-size: 2em;
+    text-shadow: 0px 2px 2px rgb(0, 0, 0)
 }
 
 .u-non-blurred {
@@ -3290,6 +3300,10 @@ post-thumbnail iframe{
   .align-left-sm {
     text-align: left;
   }
+  .investigadores-card--info h6 {
+    display: none;
+    
+  }
 }
 
 @media only screen and (max-width: 480px) {
@@ -3297,6 +3311,13 @@ post-thumbnail iframe{
   .works-grid-3 .work-item,
   .works-grid-4 .work-item,
   .works-grid-5 .work-item {
+    width: 100%;
+  }
+  .investigador-card{
+    width: 48%;
+    
+  }
+  .blog-container{
     width: 100%;
   }
 }

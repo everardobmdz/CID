@@ -118,7 +118,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-6 col-lg-4">
+				<div class="blog-container col-xs-6 col-sm-4">
 					<div class="blog-entry">
 						<a href="blog-single.html" class="block-20 d-flex align-items-end" style="background-image: url('../public/images/pruebaGallery/1.jpg');">
 							<div class="meta-date text-center p-2">
@@ -142,7 +142,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-6 col-lg-4 ftco-animate">
+				<div class="blog-container col-xs-6 col-sm-4">
 					<div class="blog-entry">
 						<a href="blog-single.html" class="block-20 d-flex align-items-end" style='background-image: url("../public/images/pruebaGallery/2.jpeg");'>
 							<div class="meta-date text-center p-2">
@@ -167,7 +167,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-6 col-lg-4 ftco-animate">
+				<div class="blog-container col-xs-6 col-sm-4">
 					<div class="blog-entry">
 						<a href="blog-single.html" class="block-20 d-flex align-items-end"
 							style="background-image: url('../public/images/pruebaGallery/3.jpg');">
@@ -283,7 +283,7 @@
                                     
                                     <div class="extension-element col-md-6 col-lg-3">
                                         <a target="_blank" href="http://www.cucsh.udg.mx/cmarti/historia" class="extension-container bg-extension1">
-                                            <div class="extension-container--img">
+                                            <div>
                                                 <img src="../public/images/martiheader_0.jpg"/>
                                                 <p>Cátedra José Martí</p>
                                             </div>
@@ -294,7 +294,7 @@
 
                                     <div class="extension-element col-md-6 col-lg-3">
                                         <a class="extension-container bg-extension1" target="_blank" href="https://docs.google.com/spreadsheets/d/1o7Vxh-cxY4rxOdvI1LlxYNVhD1T3I9Kq/edit?usp=sharing&ouid=111295052311343092029&rtpof=true&sd=true">
-                                            <div class="extension-container--img">
+                                            <div>
                                                 <img src="https://img.icons8.com/ios-filled/50/FFFFFF/book-shelf.png"/>
                                                 <p>Catálogo</p>
                                             </div>
@@ -304,7 +304,7 @@
                                     </div>
                                     <div class="extension-element col-md-6 col-lg-3">
                                         <a class="extension-container bg-extension2" target="_blank" href="https://m.youtube.com/channel/UC4Bt7XtTouqXqFTmztzBELA/featured">
-                                            <div class="extension-container--img">
+                                            <div>
                                                 <img src="../public/images/banner desmos youtube-02.jpg"/>
                                             </div>
                                             <h4>Canal de Youtube.</h4>
@@ -396,12 +396,12 @@
                 </div>
                 <div class="row">
                     <div class="mb-sm-20 wow fadeInUp col-sm-6 col-md-6" onclick="wow fadeInUp">
-                        <div class="team-item bg-dark bg-gradient" style='background-image: url("../public/images/libros.jpg")'>
+                        <div class="team-item bg-dark bg-gradient" style='background-image: url("../public/images/Libros.jpg")'>
                             <p class="u-non-blurred">Libros y capitulos</p>
                         </div>
                     </div>
                     <div class="mb-sm-20 wow fadeInUp col-sm-6 col-md-6" onclick="wow fadeInUp">
-                        <div class="team-item bg-dark bg-gradient" style='background-image: url("../public/images/revistas.jpg")'>
+                        <div class="team-item bg-dark bg-gradient" style='background-image: url("../public/images/Revistas.jpg")'>  
                             <p class="u-non-blurred">Artículos en revistas científicas</p>
                         </div>
                     </div>
@@ -493,14 +493,23 @@
         </section>
         <section id="contact">
             <h2 class="module-title font-alt">Contacto</h2>
-            <div class="contact-box">
-                <p>Dr. Jaime Ezequiel Tamayo Rodríguez</p>
+            <div class="contact-box contact-box1">
                 <p><b>Jefe de departamento</b></p><br>
-                <p>Mtra. Oralia Chantal Rodríguez Saucedo</p>
+                <p>Dr. Jaime Ezequiel Tamayo Rodríguez</p>
+                
+                
+            </div>
+            <div class="contact-box contact-box2">
                 <p><b>Asistente de la jefatura</b></p><br>
-                <p class="p-3"><b>Atención</b></p>
+                <p>Mtra. Oralia Chantal Rodríguez Saucedo</p>
+                
+
+            </div>
+            <div class="contact-box contact-box3">
+                <p><b>Atención</b></p>
                 <p>Norma Figueroa Hernández</p>
                 <p>Correo: <a href="mailto:desmos@academicos.udg.mx">desmos@academicos.udg.mx</a></p>
+                <p>Teléfono: <a href="tel:(33) 3819-3327">(33) 3819-3327</a></p>
 
             </div>
         </section>
