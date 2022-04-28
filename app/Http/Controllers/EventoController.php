@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Http\Request;
 
-class InvestigadorController extends Controller
+class EventoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +13,7 @@ class InvestigadorController extends Controller
      */
     public function index()
     {
-        return view('investigadores.index');
+        return view('eventos.index');
     }
 
     /**
@@ -24,7 +23,7 @@ class InvestigadorController extends Controller
      */
     public function create()
     {
-        return view('investigadores.create');
+        //
     }
 
     /**
@@ -57,7 +56,7 @@ class InvestigadorController extends Controller
      */
     public function edit($id)
     {
-        return view('investigadores.edit');
+        //
     }
 
     /**

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        @if (Auth::check())
+        {{-- @if (Auth::check()) --}}
             @if (session('message'))
                 <div class="alert alert-success">
                     <h2>{{ session('message') }}</h2>
@@ -42,39 +42,50 @@
                         <br>
                         <div class="row align-items-center">
                             <div class="col-md-6">
-                                <label class="font-weight-bold" for="nombre">Nombre </label>
+                                <label class="font-weight-bold" for="nombre">Nombre(s) </label>
                                 <input type="text" class="form-control" id="nombre" name="nombre" value="{{ old('nombre') }}">
                             </div>
                             <div class="col-md-6">
-                                <label class="font-weight-bold" for="linea_investigacion">Línea de investigación</label>
-                                <select class="form-control" id="linea_investigacion" name="linea_investigacion">
-                                    <option disabled selected>Elegir</option>
-                                    <option value="Antropología política">Antropología política</option>
-                                    <option value="Movimientos sociales">Movimientos sociales</option>
-                                    <option value="cultura y género">cultura y género</option>
-                                    <option value="Secularización y política">Secularización y política</option>
-                                    <option value="Historia urgente">Historia urgente</option>
-                                    <option value="Movimientos armados en México y organizaciones por la justicia de víctimas de desaparición forzada">cultura y género</option>
-                                    <option value="Derechos Humanos, Juventud">Derechos Humanos, Juventud</option>
+                                <label class="font-weight-bold" for="nombre">Apellido </label>
+                                <input type="text" class="form-control" id="apellido" name="apellido" value="{{ old('apellido') }}">
+                            </div>
+                            
+                        </div>
+                        <br>
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                                <label class="font-weight-bold" for="linea_investigacion">Linea de investigación </label>
+                                <input type="text" class="form-control" id="linea_investigacion" name="linea_investigacion" value="{{ old('linea_investigacion') }}">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="font-weight-bold" for="grado">Grado</label>
+                                <select class="form-control multiple-select" id="grado" name="grado">
+                                    <option disabled value="seleccionar" selected>Seleccionar</option>
+                                    <option value="Maestro">Maestro</option>
+                                    <option value="Maestra">Maestra</option>
+                                    <option value="Maestrante">Maestrante</option>
+                                    <option value="Doctor">Doctor</option>
+                                    <option value="Doctora">Doctora</option>
+                                    <option value="Doctorante">Doctorante</option>
                                 </select>
                             </div>
                         </div>
                         <br>
                         <div class="row align-items-center">
                             <div class="col-md-6">
-                                <label class="font-weight-bold" for="correo">Correo </label>
-                                <input type="text" class="form-control" id="correo" name="correo" value="{{ old('correo') }}">
+                                <label class="font-weight-bold" for="correo">Reconocimientos </label>
+                                <input type="text" class="form-control" id="reconocimientos" name="reconocimientos" value="{{ old('reconocimientos') }}">
                             </div>
                             <div class="col-md-6">
-                                <label class="font-weight-bold" for="grado">Grado </label>
-                                <input type="text" class="form-control" id="grado" name="grado" value="{{ old('grado') }}">
+                                <label class="font-weight-bold" for="grado">Proyecto de investigación en proceso </label>
+                                <input type="text" class="form-control" id="proyecto_invest" name="proyecto_invest" value="{{ old('proyecto_invest') }}">
                             </div>
                         </div>
 
                         <div class="row align-items-center mt-4">
                             <div class="col-md-12">
-                                <label class="font-weight-bold" for="area">Curriculum</label>
-                                <input type="text" class="form-control" id="curriculum" name="curriculum" value="{{ old('curriculum') }}">
+                                <label class="font-weight-bold" for="area">Publicaciones</label>
+                                <input type="text" class="form-control" id="publicaciones" name="publicaciones" value="{{ old('publicaciones') }}">
                             </div>
                         </div>
                         <br>
@@ -112,8 +123,8 @@
             </div>
     </div>
 
-    @else
+    {{-- @else
         El periodo de Registro de Proyectos a terminado
-    @endif
+    @endif --}}
 
 @endsection

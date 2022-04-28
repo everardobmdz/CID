@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\InvestigadorController;
+use App\Http\Controllers\EventoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,5 +26,11 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/investigadores',[InvestigadorController::class,'index']);
+Route::get('/investigadores',[InvestigadorController::class,'create']);
+Route::get('/investigadores/edit',[InvestigadorController::class,'edit']);
+
+Route::get('/eventos',[EventoController::class,'index']);
 
 Route::resource('/investigadores','App\Http\Controllers\InvestigadorController');

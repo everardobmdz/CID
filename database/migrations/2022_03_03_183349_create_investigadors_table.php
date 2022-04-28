@@ -17,10 +17,13 @@ return new class extends Migration
             $table->id();
 
             $table->string('nombre',150);
-            $table->string('grado');
-            $table->text('curriculum');
-            $table->string('lineasInves',150);
-            $table->string('correo');
+            $table->string('apellido',100);
+            $table->string('grado',150);
+            $table->string('lineasInves');
+            $table->string('correo');   
+            $table->string('proyecto_invest');   
+            $table->string('reconocimientos');   
+            $table->text('publicaciones');   
 
             $table->timestamps();
         });

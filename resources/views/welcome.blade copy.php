@@ -1,96 +1,219 @@
-@extends('layouts.plantilla')
-@section('content')
-    <section id="home" class="ftco-section bg-light">
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--
+    Document Title
+    =============================================
+    -->
+    <title>DESMOS | Departamento de Estudios Sobre Movimientos Sociales</title>
+    <!--
+    Favicons
+    =============================================
+    -->
+
+    <link rel="icon" type="image/png" href="../public/images/desmosIcon.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="../public/images/favicons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- CACHE -->
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Last-Modified" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+    <!--
+    Stylesheets
+    =============================================
+    -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+
+    <!-- Default stylesheets-->
+    {{-- <link href="../public/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"> --}}
+    <!-- Template specific stylesheets-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Volkhov:400i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+    <link href="../public/lib/animate.css/animate.css" rel="stylesheet">
+    <link href="../public/lib/components-font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../public/lib/et-line-font/et-line-font.css" rel="stylesheet">
+    <link href="../public/lib/flexslider/flexslider.css" rel="stylesheet">
+    <link href="../public/lib/owl.carousel/dist/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../public/lib/owl.carousel/dist/assets/owl.theme.default.min.css" rel="stylesheet">
+    <link href="../public/lib/magnific-popup/dist/magnific-popup.css" rel="stylesheet">
+    <link href="../public/lib/simple-text-rotator/simpletextrotator.css" rel="stylesheet">
+    <!-- Main stylesheet and color file-->
+    <link href="../public/css/style.css" rel="stylesheet">
+    <link id="color-scheme" href="../public/css/colors/default.css" rel="stylesheet">
+</head>
+<body data-spy="scroll" data-target=".onpage-navigation" data-offset="60">
+<main>
+    <div class="page-loader">
+        <div class="loader">Loading...</div>
+    </div>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light" role="navigation">
+        <a class="navbar-brand" href="https://www.udg.mx"><img class="img-fluid" src="../public/images/logoUDG.jpg" width="212" height="auto"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#totop">Inicio <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="section-scroll nav-link" href="#services">Quiénes somos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="section-scroll nav-link" href="#works">Investigadores</a></a>
+                </li>
+                <li class="nav-item">
+                    <a class="section-scroll nav-link" href="#team">Publicaciones</a></a>
+                </li>
+                <li class="nav-item">
+                    <a class="section-scroll nav-link" href="#news">Divulgación</a></a>
+                </li>
+                <li class="nav-item">
+                    <a class="section-scroll nav-link"  href="#pricing">Eventos</a></a>
+                </li>
+                <li class="nav-item">
+                    <a class="section-scroll nav-link"  href="#contact">Contacto</a></a>
+                </li>
+
+                
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+            </form>
+        </div>
+    </nav>
+
+    {{--<section class="home-section h-0.3 " id="home" data-background="../public/images/desmos.jpg">
+    </section>--}}
+
+    <!-- <div id="home" class="home-full-height home-section">
         <img class="img-fluid" src="../public/images/desmos.jpg">
-        <div class="container news-section">
-            <div class="row justify-content-center">
-                <div class="col-md-8 col-lg-12 text-center heading-section ftco-animate">
-                    <h2 class="mb-4"><span>Noticias</span> Recientes</h2>
+        <div class="noticias">
+            <div class="noticias-box">
+                <img src="../public/images/pruebaGallery/1.jpg" alt="news">
+                <div class="noticias-caption">
+                    <h4>Mesas Redondas: La crisis de Ucrania y la confrontación geo-estratégica USA-OTAN y Rusia</h4>
                 </div>
             </div>
-            <div class="row">
-                <div class="blog-container col-xs-6 col-sm-4">
-                    <div class="blog-entry">
-                        <a href="blog-single.html" class="block-20 d-flex align-items-end" style="background-image: url('../public/images/pruebaGallery/1.jpg');">
-                            <div class="meta-date text-center p-2">
-                                <span class="day">01</span>
-                                <span class="mos">Mar</span>
-                                <span class="yr">2022</span>
-                            </div>
-                        </a>
-                        <div class="text bg-white p-4">
-                            <h3 class="heading"><a href="#">Mesas Redondas: La crisis de Ucrania y la confrontación geo-estratégica USA-OTAN y Rusia</a></h3>
-                            <div class="description-news">
+            <div class="noticias-box">
+                <img src="../public/images/pruebaGallery/2.jpeg" alt="news">
+                <div class="noticias-caption">
+                    <h4>Presentación del Libro: Andrés Manuel López Obrador, A LA MITAD DEL CAMINO</h4>
+                </div>
+            </div>
+            <div class="noticias-box">
+                <img src="../public/images/pruebaGallery/3.jpg" alt="news">
+                <div >
+                    <h4>Ciudadanía Activia, movimientos electorales y candidaturas independientes. Sesión 12 del Seminario Permanente: Movimientos Sociales, Acción Colectiva y Política</h4>
+                </div>
+            </div>
+        </div>
+
+    </div> -->
+    <section id="home" class="ftco-section bg-light">
+        <img class="img-fluid" src="../public/images/desmos.jpg">
+		<div class="container news-section">
+			<div class="row justify-content-center">
+				<div class="col-md-8 col-lg-12 text-center heading-section ftco-animate">
+					<h2 class="mb-4"><span>Noticias</span> Recientes</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="blog-container col-xs-6 col-sm-4">
+					<div class="blog-entry">
+						<a href="blog-single.html" class="block-20 d-flex align-items-end" style="background-image: url('../public/images/pruebaGallery/1.jpg');">
+							<div class="meta-date text-center p-2">
+								<span class="day">01</span>
+								<span class="mos">Mar</span>
+								<span class="yr">2022</span>
+							</div>
+						</a>
+						<div class="text bg-white p-4">
+							<h3 class="heading"><a href="#">Mesas Redondas: La crisis de Ucrania y la confrontación geo-estratégica USA-OTAN y Rusia</a></h3>
+							<div class="description-news">
                                 <p>El Departamento de Estudios Sobre Movimientos Sociales, Departamento de Estudios Ibéricos y Latinoamericanos,
                                     Doctorado en Ciencia Política, Cuerpo Académico: Integración Regional Democracia y Desarrollo en América Latina y
                                     Cuerpo Académico: Estudios Europeos invitan a las Mesas Redondas: La crisis de Ucrania y la confrontación geo-estratégica
-                                    USA-OTAN y Rusia, viernes 4 marzo 2022 de 11:00 a 14:00 hrs, Auditorio Rosario Castellanos (CUCSH Belenes)</p>
+                                 USA-OTAN y Rusia, viernes 4 marzo 2022 de 11:00 a 14:00 hrs, Auditorio Rosario Castellanos (CUCSH Belenes)</p>
                             </div>
-                            <div class="d-flex align-items-center mt-4">
-                                <p class="mb-0"><a href="#" class="btn btn-info">Leer más<span
-                                            class="ion-ios-arrow-round-forward"></span></a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="blog-container col-xs-6 col-sm-4">
-                    <div class="blog-entry">
-                        <a href="blog-single.html" class="block-20 d-flex align-items-end" style='background-image: url("../public/images/pruebaGallery/2.jpeg");'>
-                            <div class="meta-date text-center p-2">
-                                <span class="day">24</span>
-                                <span class="mos">Feb</span>
-                                <span class="yr">2022</span>
-                            </div>
-                        </a>
-                        <div class="text bg-white p-4">
-                            <h3 class="heading"><a href="#">Presentación del Libro: Andrés Manuel López Obrador, A LA MITAD DEL CAMINO</a></h3>
-                            <div class="description-news">
+							<div class="d-flex align-items-center mt-4">
+								<p class="mb-0"><a href="#" class="btn btn-primary">Leer más<span
+											class="ion-ios-arrow-round-forward"></span></a></p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="blog-container col-xs-6 col-sm-4">
+					<div class="blog-entry">
+						<a href="blog-single.html" class="block-20 d-flex align-items-end" style='background-image: url("../public/images/pruebaGallery/2.jpeg");'>
+							<div class="meta-date text-center p-2">
+								<span class="day">24</span>
+								<span class="mos">Feb</span>
+								<span class="yr">2022</span>
+							</div>
+						</a>
+						<div class="text bg-white p-4">
+							<h3 class="heading"><a href="#">Presentación del Libro: Andrés Manuel López Obrador, A LA MITAD DEL CAMINO</a></h3>
+							<div class="description-news">
                                 <p>El Departamento de Estudios Sobre Movimientos Sociales (DESMOS),
                                     Pensamiento sociológico de Carlos Marx y Sociología invitan a la Presentación del Libro:
                                     Andrés Manuel López Obrador, A LA MITAD DEL CAMINO, el día 25 de febrero del 2022
                                     a las 17:00 hrs en el Auditorio Carlos Ramírez Ládewing del Centro Universitario de
                                     Ciencias Sociales y Humanidades (La Normal).</p>
                             </div>
-                            <div class="d-flex align-items-center mt-4">
-                                <p class="mb-0"><a href="#" class="btn btn-info">Leer más<span
-                                            class="ion-ios-arrow-round-forward"></span></a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="blog-container col-xs-6 col-sm-4">
-                    <div class="blog-entry">
-                        <a href="blog-single.html" class="block-20 d-flex align-items-end"
-                            style="background-image: url('../public/images/pruebaGallery/3.jpg');">
-                            <div class="meta-date text-center p-2">
-                                <span class="day">23</span>
-                                <span class="mos">Nov</span>
-                                <span class="yr">2021</span>
-                            </div>
-                        </a>
-                        <div class="text bg-white p-4">
-                            <h3 class="heading"><a href="#">Ciudadanía Activia, movimientos electorales y candidaturas independientes. Sesión 12 del Seminario Permanente: Movimientos Sociales, Acción Colectiva y Política</a></h3>
-                            <div class="description-news">
+							<div class="d-flex align-items-center mt-4">
+								<p class="mb-0"><a href="#" class="btn btn-primary">Leer más<span
+											class="ion-ios-arrow-round-forward"></span></a></p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="blog-container col-xs-6 col-sm-4">
+					<div class="blog-entry">
+						<a href="blog-single.html" class="block-20 d-flex align-items-end"
+							style="background-image: url('../public/images/pruebaGallery/3.jpg');">
+							<div class="meta-date text-center p-2">
+								<span class="day">23</span>
+								<span class="mos">Nov</span>
+								<span class="yr">2021</span>
+							</div>
+						</a>
+						<div class="text bg-white p-4">
+							<h3 class="heading"><a href="#">Ciudadanía Activia, movimientos electorales y candidaturas independientes. Sesión 12 del Seminario Permanente: Movimientos Sociales, Acción Colectiva y Política</a></h3>
+							<div class="description-news">
                                 <p>El Observatorio de Movimientos Sociales y el Departamento de Estudios Sobre Movimientos Sociales (DESMOS) invitan a la sesión 12:
                                     Ciudadanía Activia, movimientos electorales y candidaturas independientes de su Seminario Permanente:
                                     Movimientos Sociales, Acción Colectiva y Política, el día 23 de noviembre de 2021 de 5:00 a 7:30 p.m. </p>
                             </div>
-                            <div class="d-flex align-items-center mt-4">
-                                <p class="mb-0"><a href="#" class="btn btn-info">Leer más<span
-                                            class="ion-ios-arrow-round-forward"></span></a></p>
+							<div class="d-flex align-items-center mt-4">
+								<p class="mb-0"><a href="#" class="btn btn-primary">Leer más<span
+											class="ion-ios-arrow-round-forward"></span></a></p>
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
     <div class="main">
         <section class="module" id="services">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-6 offset-sm-3">
+                    <div class="col-sm-6 offset-3">
                         <h2 class="module-title font-alt">Quiénes somos</h2>
                     </div>
                 </div>
@@ -167,9 +290,9 @@
                             <div class="somos-extension container">
                                 <div class="row">
                                     <div class="extension-element col-md-6 col-lg-3">
-                                        <a target="_blank" href="https://www.facebook.com/ObserVamos" class="extension-container bg-extension2" style="background-image: url('../public/images/observatorio.jpg');">
-
-                                        </a>
+                                        <div class="extension-container bg-extension2">
+                                            <p>El DESMOS, conjuntamente con el Observatorio de Movimientos Sociales-Observamos, realiza un Seminario Permanente: Movimientos Sociales, Acción Colectiva y Política.</p>
+                                        </div>
                                     </div>
                                     
                                     <div class="extension-element col-md-6 col-lg-3">
@@ -178,15 +301,18 @@
                                                 <img src="../public/images/martiheader_0.jpg"/>
                                                 <p>Cátedra José Martí</p>
                                             </div>
+                                            <p>El DESMOS es sede de la Cátedra José Martí.</p>
                                         </a>
                                     </div>
                                     
 
                                     <div class="extension-element col-md-6 col-lg-3">
-                                        <a style="justify-content: flex-end; background-image: url('../public/images/catalogo.jpg');" class="extension-container bg-extension2" target="_blank" href="https://docs.google.com/spreadsheets/d/1IMWvKkySg5aHb3dfXgQj-F7HJ1Cdw8qj/edit#gid=498495349">
-                                            <div style="width: 100%; background:white; padding-top:10px 0;">
-                                                <p>Catálogo de biblioteca</p>
+                                        <a class="extension-container bg-extension1" target="_blank" href="https://docs.google.com/spreadsheets/d/1o7Vxh-cxY4rxOdvI1LlxYNVhD1T3I9Kq/edit?usp=sharing&ouid=111295052311343092029&rtpof=true&sd=true">
+                                            <div>
+                                                <img src="https://img.icons8.com/ios-filled/50/FFFFFF/book-shelf.png"/>
+                                                <p>Catálogo</p>
                                             </div>
+                                            <p>El DESMOS cuenta con un Centro Documental Especializado en sus intalaciones (Biblioteca).</p>
                                         </a>
 
                                     </div>
@@ -195,6 +321,7 @@
                                             <div>
                                                 <img src="../public/images/banner desmos youtube-02.jpg"/>
                                             </div>
+                                            <p>Canal de Youtube.</p>
                                         </a>
                                     </div>
 
@@ -217,7 +344,7 @@
         <section class="module pb-0" id="works">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-6 offset-sm-3">
+                    <div class="col-sm-6 offset-3">
                         <h2 class="module-title font-alt">Investigadores</h2>
                         <div class="module-subtitle font-serif"></div>
                     </div>
@@ -279,14 +406,14 @@
         <section class="module" id="team">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-6 offset-sm-3">
+                    <div class="col-sm-6 offset-3">
                         <h2 class="module-title font-alt">Publicaciones</h2>
                     </div>
                 </div>
                 <div class="row">
                     <div class="mb-sm-20 wow fadeInUp col-sm-6 col-md-6" onclick="wow fadeInUp">
                         <div class="team-item bg-dark bg-gradient" style='background-image: url("../public/images/Libros.jpg")'>
-                            <p class="u-non-blurred">Libros y capítulos</p>
+                            <p class="u-non-blurred">Libros y capitulos</p>
                         </div>
                     </div>
                     <div class="mb-sm-20 wow fadeInUp col-sm-6 col-md-6" onclick="wow fadeInUp">
@@ -302,7 +429,7 @@
         <section class="module" id="news">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-6 offset-sm-3">
+                    <div class="col-sm-6 offset-3">
                         <h2 class="module-title font-alt">Divulgación</h2>
 
                     </div>
@@ -381,23 +508,23 @@
             </div>
         </section>
         <section id="contact">
-            <img src="https://img.icons8.com/ios/50/FFFFFF/contact-card.png"/> 
+            
             <h2 class="module-title font-alt">Contacto</h2>
             <div class="contact-container">
 
-                <div class="contact-box">
+                <div class="contact-box contact-box1">
                     <p><b>Jefe de departamento</b></p><br>
                     <p>Dr. Jaime Ezequiel Tamayo Rodríguez</p>
                     
                     
                 </div>
-                <div class="contact-box">
+                <div class="contact-box contact-box2">
                     <p><b>Asistente de la jefatura</b></p><br>
                     <p>Mtra. Oralia Chantal Rodríguez Saucedo</p>
                     
     
                 </div>
-                <div class="contact-box">
+                <div class="contact-box contact-box3">
                     <p><b>Atención</b></p>
                     <p>Norma Figueroa Hernández</p>
                     <p>Correo: <a href="mailto:desmos@academicos.udg.mx">desmos@academicos.udg.mx</a></p>
@@ -406,9 +533,62 @@
                 </div>
             </div>
         </section>
-@endsection
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#273036" fill-opacity="1" d="M0,288L60,288C120,288,240,288,360,272C480,256,600,224,720,224C840,224,960,256,1080,272C1200,288,1320,288,1380,288L1440,288L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
+        <div class="infoFooter">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="widget">
+                            <img src="../public/images/escudo_footer.png">
+                            <p>CENTRO UNIVERSITARIO DE CIENCIAS SOCIALES Y HUMANIDADES</p>
+                            <p>Departamento de Estudios sobre Movimientos Sociales (DESMOS)</p>
+                            <p>Av. de los Maestros y Av. Alcalde, puerta 1, edificio G, tercer nivel C.P. 44260.</p>
+                            <p>Teléfono: (33) 3819-3327</p>
+                        </div>
+                    </div>
 
-@section('modal')
+                </div>
+            </div>
+        </div>
+        <hr class="divider-d">
+        <footer class="footer bg-dark">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p class="copyright font-alt"><a href="index.html">Universidad de Guadalajara</a></p>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="footer-social-links"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-dribbble"></i></a><a href="#"><i class="fa fa-skype"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <div class="scroll-up"><a href="#totop"><i class="fa fa-angle-double-up"></i></a></div>
+</main>
+<!--
+JavaScripts
+=============================================
+-->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="../public/lib/jquery/dist/jquery.js"></script>
+{{-- <script src="../public/lib/bootstrap/dist/js/bootstrap.min.js"></script> --}}
+<script src="../public/lib/wow/dist/wow.js"></script>
+<script src="../public/lib/jquery.mb.ytplayer/dist/jquery.mb.YTPlayer.js"></script>
+<script src="../public/lib/isotope/dist/isotope.pkgd.js"></script>
+<script src="../public/lib/imagesloaded/imagesloaded.pkgd.js"></script>
+<script src="../public/lib/flexslider/jquery.flexslider.js"></script>
+<script src="../public/lib/owl.carousel/dist/owl.carousel.min.js"></script>
+<script src="../public/lib/smoothscroll.js"></script>
+<script src="../public/lib/magnific-popup/dist/jquery.magnific-popup.js"></script>
+<script src="../public/lib/simple-text-rotator/jquery.simple-text-rotator.min.js"></script>
+<script src="../public/js/plugins.js"></script>
+<script src="../public/js/main.js"></script>
+
+
 {{-- Modal --}}
 <div class="modal fade" id='modalInvest'>
     <div class="modal-dialog modal-lg">
@@ -425,7 +605,7 @@
                         <b>Reconocimientos: </b> Investigador Nacional Emérito en el SNI.
                     </div>
                     <div class="modal-info--item">
-                        <b>Proyecto de investigación en proceso: </b> Movimientos populares contra los despojos.
+                        Proyecto de investigación en proceso: Movimientos populares contra los despojos.
                     </div>
                     <div class="modal-info--item">
                         <b>Publicaciones: </b>
@@ -458,6 +638,5 @@
     </div>
 
 </div>
-
-
-@endsection
+</body>
+</html>

@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{{ url('/') }}">SIGE CTA CUCSH</a>
+        <a class="navbar-brand" href="{{ url('/') }}">CID - DESMOS</a>
         <button 
             class="navbar-toggler"
             type="button"
