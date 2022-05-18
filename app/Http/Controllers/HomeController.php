@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\VsTicket;
 
 class HomeController extends Controller
 {
@@ -11,10 +12,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     /**
      * Show the application dashboard.
@@ -23,6 +24,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+	// $ticketsBelenes=VsTicket::where('activo','=',1)
+    //         ->where('estatus','=','Abierto')
+	//     ->where('sede','=','Belenes')
+    //         ->where('categoria','<>','Reporte de aula')->count();
+
+	// $ticketsNormal=VsTicket::where('activo','=',1)
+    //         ->where('estatus','=','Abierto')
+	//     ->where('sede','=','La Normal')
+    //         ->where('categoria','<>','Reporte de aula')->count();
+
+        // return view('home')->with('ticketsNormal',$ticketsNormal)->with('ticketsBelenes',$ticketsBelenes);
+        return view('home');    
     }
 }

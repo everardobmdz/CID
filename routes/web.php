@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InvestigadorController;
 use App\Http\Controllers\EventoController;
+use App\Http\Controllers\PublicacionController;
+use App\Http\Controllers\WelcomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +17,6 @@ use App\Http\Controllers\EventoController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
@@ -27,10 +26,46 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/investigadores',[InvestigadorController::class,'index']);
-Route::get('/investigadores',[InvestigadorController::class,'create']);
-Route::get('/investigadores/edit',[InvestigadorController::class,'edit']);
+// Route::get('/investigadores',[InvestigadorController::class,'index']);
+// Route::get('/investigadores',[InvestigadorController::class,'create']);
+// Route::get('/investigadores/edit',[InvestigadorController::class,'edit']);
+Route::get('/investigadores/indexAdmin',[InvestigadorController::class,'indexAdmin'])->name('investigadores.indexAdmin');
+Route::get('/eventos/indexAdmin',[EventoController::class,'indexAdmin'])->name('eventos.indexAdmin');
+Route::get('/eventos/{evento}',[EventoController::class,'show'])->name('eventos.show');   
+
+Route::get('/',[WelcomeController::class,'index'])->name('welcome');
 
 Route::get('/eventos',[EventoController::class,'index']);
 
-Route::resource('/investigadores','App\Http\Controllers\InvestigadorController');
+Route::resource('investigadores', 'App\Http\Controllers\InvestigadorController');
+Route::resource('/eventos','App\Http\Controllers\EventoController');
+Route::resource('/','App\Http\Controllers\WelcomeController');
+
+
+Route::get('/images/investigadores/{filename}', array(
+    'as' => 'images',
+    'middleware' => 'auth',
+    'uses' => 'App\Http\Controllers\InvestigadorController@getImage'
+));
+
+Route::get('/images/eventos/{filename}', array(
+    'as' => 'images',
+    'middleware' => 'auth',
+    'uses' => 'App\Http\Controllers\EventoController@getImage'
+));
+Route::get('/images/publicaciones/{filename}', array(
+    'as' => 'images',
+    'middleware' => 'auth',
+    'uses' => 'App\Http\Controllers\PublicacionController@getImage'
+));
+Route::get('/delete-investigador/{investigador_id}', array(
+    'as' => 'delete-investigador',
+    'middleware' => 'auth',
+    'uses' => 'App\Http\Controllers\InvestigadorController@delete_investigador'
+));
+
+Route::get('/delete-evento/{evento_id}', array(
+    'as' => 'delete-evento',
+    'middleware' => 'auth',
+    'uses' => 'App\Http\Controllers\InvestigadorController@delete_evento'
+));

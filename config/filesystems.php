@@ -1,5 +1,7 @@
 <?php
 
+use League\Flysystem\Visibility;
+
 return [
 
     /*
@@ -38,6 +40,24 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+        'images-investigadores' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/images/investigadores'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+        'images-eventos' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/images/eventos'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+        'images-publicaciones' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/images/publicaciones'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],

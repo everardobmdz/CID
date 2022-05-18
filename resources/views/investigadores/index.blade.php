@@ -1,154 +1,104 @@
-@extends('layouts.app')
+@extends('layouts.plantilla')
 
 @section('content')
-    @if(Auth::check() && ( Auth::user()->role == 'admin' || Auth::user()->role == 'rh' || Auth::user()->role == 'redes' || Auth::user()->role == 'cta'))
 
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-
-                    @if (session('message'))
-                        <div class="alert alert-success">
-                            {{ session('message') }}
-                        </div>
-                    @endif
-                    @if($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach($errors->all() as $error)
-                                    <li>{{$error}}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                    <br>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-
-                    <h2>Listado de Áreas </h2>
-                    <br>
-                    <p align="right">
-                        <a href="{{ route('areas.create') }}" class="btn btn-success">Capturar Área</a>
-                        <a href="{{ route('home') }}" class="btn btn-primary">< Regresar</a>
-                    </p>
-                    <table id="example" class="table table-striped table-bordered" style="width:100%">
-                        <thead>
-                        <tr>
-                            <th>Acciones</th>
-                            <th>Id Área</th>
-                            <th>Tipo de Espacio</th>
-                            <th>Sede</th>
-                            <th>Edificio</th>
-                            <th>Piso</th>
-                            <th>División</th>
-                            <th>Coordinación</th>
-                            <th>Área</th>
-
-
-                        </tr>
-                        </thead>
-                        <tbody>
-
-
-                        </tbody>
-
-                    </table>
-                </div>
-            </div>
-            <p>
-                <a href="{{ route('home') }}" class="btn btn-primary">< Regresar</a>
-            </p>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-12 text-center heading-section ftco-animate">
+            <h2 class="mb-4">Investigadores</h2>
         </div>
-        @extends('layouts.loader')
+    </div>
+    @foreach($investigadores->chunk(4) as $chunk)
+        <div class="row justify-content-start">
+            @foreach ($chunk as $investigador)    
+                <div class="col-sm-3 ">
+                    <div class="p-3 investigador-card w-100">
 
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-        <script type="text/javascript" src="https://cdn.datatables.net/v/bs4-4.1.1/jszip-2.5.0/dt-1.10.24/b-1.7.0/b-html5-1.7.0/b-print-1.7.0/r-2.2.7/datatables.min.js"></script>
+                        <div class="img-border-rounded">
+                            @if(Storage::disk('images-investigadores')->has($investigador->image))
+                                <img src="{{url('/storage/images/investigadores/'.$investigador->image)}}"/>
+                            @endif
+            
+                        </div>
+                        <div class="investigadores-card--info">
+                            @if(strlen($investigador->nombre.' '.$investigador->apellido)>36)
+                                <h4>{{substr(($investigador->nombre.' '.$investigador->apellido),0,36).'...'}}</h4>
+                            @else
+                                <h4>{{$investigador->nombre.' '.$investigador->apellido}}</h4>
+                            @endif
+                            <h5>{{$investigador->grado}}</h5>
+                            <h6>Linea de investigación: <i>{{substr($investigador->lineasInves,0,63).'...'}}</i></h6>
+                        </div>
+                        <br>
+                        <button type="button" class="btn btn-info btnModal" data-toggle="modal" data-target="#modalInvest-{{$investigador->id}}">Info</button>
+                    </div>
+                
+                </div>
+            @endforeach
+    
+        </div>
+    @endforeach
+    <div class="d-flex">
+        {!! $investigadores->links() !!}
+    </div>
+</div>
+@endsection
 
-        <script type="text/javascript">
-            var data = @json($areas);
+@section('modal')
+{{-- Modal --}}
+@foreach ($investigadores as $investigador)
+    <div class="modal fade" id={{'modalInvest-'.$investigador->id}}>
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="img-border-rounded">
+                        @if(Storage::disk('images-investigadores')->has($investigador->image))
+                            <img src="{{url('/storage/images/investigadores/'.$investigador->image)}}"/>
+                        @endif
+                    </div>
+                    <h1>{{$investigador->nombre.' '.$investigador->apellido}}</h1><br>
+                </div>
+                <div class="modal-body">
+                    <div class="informacionModal">
+                        @if($investigador->reconocimientos)
+                            <div class="modal-info--item">
+                                <b>Reconocimientos: </b> {{$investigador->reconocimientos}}
+                            </div>
+                        @endif
+                        @if($investigador->proyecto_invest)
+                            <div class="modal-info--item">
+                                <b>Proyecto de investigación en proceso: </b> {{$investigador->proyecto_invest}}
+                            </div>
+                        @endif
+                        <div class="modal-info--item">
+                            <b>Publicaciones: </b>
+                            {{$investigador->publicaciones}}
+                        </div>
+                        <div class="modal-info--item">
+                            <b>Contacto: </b>
+                            {{$investigador->correo}}
+                        </div>
+                        <div class="modal-info--item">
+                            <b>Grado: </b>
+                            {{$investigador->grado}}
+                        </div>
+                        <div class="modal-info--item">
+                            <b>Lineas de investigación: </b>
+                            {{$investigador->lineasInves}}
+                        </div>
+                        
+                        
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <input class="btn btn-primary" data-dismiss="modal" value="Cerrar">
+                </div>
+            </div>
+        </div>
+        
+    </div>
+@endforeach
 
-            $(document).ready(function() {
-                $('#example').DataTable({
-                    "data": data,
-                    "pageLength": 100,
-                    "order": [
-                        [0, "desc"]
-                    ],
-                    "language": {
-                        "sProcessing": "Procesando...",
-                        "sLengthMenu": "Mostrar _MENU_ registros",
-                        "sZeroRecords": "No se encontraron resultados",
-                        "sEmptyTable": "Ningún dato disponible en esta tabla",
-                        "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                        "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-                        "sInfoPostFix": "",
-                        "sSearch": "Buscar:",
-                        "sUrl": "",
-                        "sInfoThousands": ",",
-                        "sLoadingRecords": "Cargando...",
-                        "oPaginate": {
-                            "sFirst": "Primero",
-                            "sLast": "Último",
-                            "sNext": "Siguiente",
-                            "sPrevious": "Anterior"
-                        },
-                        "oAria": {
-                            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                        }
-                    },
-                    responsive: true,
-                    // dom: 'Bfrtip',
-                    dom: '<"col-xs-3"l><"col-xs-5"B><"col-xs-4"f>rtip',
-                    buttons: [
-                        'copy', 'excel',
-                        {
-                            extend: 'pdfHtml5',
-                            orientation: 'landscape',
-                            pageSize: 'LETTER',
-                        }
 
-                    ]
-                })
-                loader(false);
-            });
-
-
-            jQuery.extend( jQuery.fn.dataTableExt.oSort, {
-                "portugues-pre": function ( data ) {
-                    var a = 'a';
-                    var e = 'e';
-                    var i = 'i';
-                    var o = 'o';
-                    var u = 'u';
-                    var c = 'c';
-                    var special_letters = {
-                        "Á": a, "á": a, "Ã": a, "ã": a, "À": a, "à": a,
-                        "É": e, "é": e, "Ê": e, "ê": e,
-                        "Í": i, "í": i, "Î": i, "î": i,
-                        "Ó": o, "ó": o, "Õ": o, "õ": o, "Ô": o, "ô": o,
-                        "Ú": u, "ú": u, "Ü": u, "ü": u,
-                        "ç": c, "Ç": c
-                    };
-                    for (var val in special_letters)
-                        data = data.split(val).join(special_letters[val]).toLowerCase();
-                    return data;
-                },
-                "portugues-asc": function ( a, b ) {
-                    return ((a < b) ? -1 : ((a > b) ? 1 : 0));
-                },
-                "portugues-desc": function ( a, b ) {
-                    return ((a < b) ? 1 : ((a > b) ? -1 : 0));
-                }
-            } );
-            //"columnDefs": [{ type: 'portugues', targets: "_all" }],
-
-        </script>
-    @else
-        Acceso No válido
-    @endif
 @endsection

@@ -1,7 +1,6 @@
 @extends('layouts.plantilla')
 @section('content')
     <section id="home" class="ftco-section bg-light">
-        <img class="img-fluid" src="../public/images/desmos.jpg">
         <div class="container news-section">
             <div class="row justify-content-center">
                 <div class="col-md-8 col-lg-12 text-center heading-section ftco-animate">
@@ -9,80 +8,38 @@
                 </div>
             </div>
             <div class="row">
+                @foreach ($eventos as $evento)
                 <div class="blog-container col-xs-6 col-sm-4">
                     <div class="blog-entry">
-                        <a href="blog-single.html" class="block-20 d-flex align-items-end" style="background-image: url('../public/images/pruebaGallery/1.jpg');">
+                        <a href="blog-single.html" class="block-20 d-flex align-items-end" style="background-image: url('{{url('/storage/images/eventos/'.$evento->image)}}');">
                             <div class="meta-date text-center p-2">
-                                <span class="day">01</span>
-                                <span class="mos">Mar</span>
-                                <span class="yr">2022</span>
+                                <?php
+                                $date = new DateTime(explode(" ",$evento->fecha)[0]);
+                                $formatedDate = $date->getTimestamp();
+                                setlocale(LC_TIME,'esm.UTF-8');
+                                echo '<span class="day">'.strftime('%d',$formatedDate).'</span>
+                                <span class="mos">'.ucfirst(substr(strftime('%B',$formatedDate),0,3)).'</span>
+                                <span class="yr">'.strftime('%Y',$formatedDate).'</span>                              
+                                '
+                                ?>
                             </div>
                         </a>
                         <div class="text bg-white p-4">
-                            <h3 class="heading"><a href="#">Mesas Redondas: La crisis de Ucrania y la confrontación geo-estratégica USA-OTAN y Rusia</a></h3>
+                            <h3 class="heading"><a href="#">{{substr($evento->titulo,0,109)}}</a></h3>
                             <div class="description-news">
-                                <p>El Departamento de Estudios Sobre Movimientos Sociales, Departamento de Estudios Ibéricos y Latinoamericanos,
-                                    Doctorado en Ciencia Política, Cuerpo Académico: Integración Regional Democracia y Desarrollo en América Latina y
-                                    Cuerpo Académico: Estudios Europeos invitan a las Mesas Redondas: La crisis de Ucrania y la confrontación geo-estratégica
-                                    USA-OTAN y Rusia, viernes 4 marzo 2022 de 11:00 a 14:00 hrs, Auditorio Rosario Castellanos (CUCSH Belenes)</p>
+                                <p> {!!strip_tags($evento->descripcion)!!}</p>
                             </div>
                             <div class="d-flex align-items-center mt-4">
-                                <p class="mb-0"><a href="#" class="btn btn-info">Leer más<span
+                                <p class="mb-0"><a href="{{route('eventos.show',$evento)}}" class="btn btn-info">Leer más<span
                                             class="ion-ios-arrow-round-forward"></span></a></p>
                             </div>
                         </div>
+                        
                     </div>
                 </div>
-                <div class="blog-container col-xs-6 col-sm-4">
-                    <div class="blog-entry">
-                        <a href="blog-single.html" class="block-20 d-flex align-items-end" style='background-image: url("../public/images/pruebaGallery/2.jpeg");'>
-                            <div class="meta-date text-center p-2">
-                                <span class="day">24</span>
-                                <span class="mos">Feb</span>
-                                <span class="yr">2022</span>
-                            </div>
-                        </a>
-                        <div class="text bg-white p-4">
-                            <h3 class="heading"><a href="#">Presentación del Libro: Andrés Manuel López Obrador, A LA MITAD DEL CAMINO</a></h3>
-                            <div class="description-news">
-                                <p>El Departamento de Estudios Sobre Movimientos Sociales (DESMOS),
-                                    Pensamiento sociológico de Carlos Marx y Sociología invitan a la Presentación del Libro:
-                                    Andrés Manuel López Obrador, A LA MITAD DEL CAMINO, el día 25 de febrero del 2022
-                                    a las 17:00 hrs en el Auditorio Carlos Ramírez Ládewing del Centro Universitario de
-                                    Ciencias Sociales y Humanidades (La Normal).</p>
-                            </div>
-                            <div class="d-flex align-items-center mt-4">
-                                <p class="mb-0"><a href="#" class="btn btn-info">Leer más<span
-                                            class="ion-ios-arrow-round-forward"></span></a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="blog-container col-xs-6 col-sm-4">
-                    <div class="blog-entry">
-                        <a href="blog-single.html" class="block-20 d-flex align-items-end"
-                            style="background-image: url('../public/images/pruebaGallery/3.jpg');">
-                            <div class="meta-date text-center p-2">
-                                <span class="day">23</span>
-                                <span class="mos">Nov</span>
-                                <span class="yr">2021</span>
-                            </div>
-                        </a>
-                        <div class="text bg-white p-4">
-                            <h3 class="heading"><a href="#">Ciudadanía Activia, movimientos electorales y candidaturas independientes. Sesión 12 del Seminario Permanente: Movimientos Sociales, Acción Colectiva y Política</a></h3>
-                            <div class="description-news">
-                                <p>El Observatorio de Movimientos Sociales y el Departamento de Estudios Sobre Movimientos Sociales (DESMOS) invitan a la sesión 12:
-                                    Ciudadanía Activia, movimientos electorales y candidaturas independientes de su Seminario Permanente:
-                                    Movimientos Sociales, Acción Colectiva y Política, el día 23 de noviembre de 2021 de 5:00 a 7:30 p.m. </p>
-                            </div>
-                            <div class="d-flex align-items-center mt-4">
-                                <p class="mb-0"><a href="#" class="btn btn-info">Leer más<span
-                                            class="ion-ios-arrow-round-forward"></span></a></p>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    
+                @endforeach
+                
             </div>
         </div>
     </section>
@@ -223,45 +180,30 @@
                     </div>
                 </div>
             </div>
-           <div class="container investigadores">
-               <div class="investigador-card">
-                   <div class="img-border-rounded">
-                       <img src="../public/images/investigadores/Jorge Alonso foto.jpg">
-                    </div>
-                    <div class="investigadores-card--info">
-                        <h4>Jorge Alonso Sánchez</h4>
-                        <h5>Doctor</h5>
-                        <h6>Linea de investigación: <i>Antropología Politica</i></h6>
-                    </div>
-                    <br>
-                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalInvest">Info</button>
+            <div class="container investigadores">
+                @foreach ($investigadores as $investigador)
+                
+                    <div class="investigador-card w-30">
+                        <div class="img-border-rounded">
+                            @if(Storage::disk('images-investigadores')->has($investigador->image))
+                                <img src="{{url('/storage/images/investigadores/'.$investigador->image)}}"/>
+                            @endif
 
-                    
-               </div>
-               <div class="investigador-card">
-                   <div class="img-border-rounded">
-                       <img src="../public/images/investigadores/foto raquel carvajal.png">
+                        </div>
+                        <div class="investigadores-card--info">
+                            @if(strlen($investigador->nombre.' '.$investigador->apellido)>36)
+                                <h4>{{substr(($investigador->nombre.' '.$investigador->apellido),0,36).'...'}}</h4>
+                            @else
+                                <h4>{{$investigador->nombre.' '.$investigador->apellido}}</h4>
+                            @endif
+                            <h5>{{$investigador->grado}}</h5>
+                            <h6>Linea de investigación: <i>{{substr($investigador->lineasInves,0,63).'...'}}</i></h6>
+                        </div>
+                        <br>
+                        <button type="button" class="btn btn-info btnModal" data-toggle="modal" data-target="#modalInvest-{{$investigador->id}}">Info</button>
+                        
                     </div>
-                    <div class="investigadores-card--info">
-                        <h4>Ma. Raquel Carvajal Silva</h4>
-                        <h5>Doctora</h5>
-                        <h6>Linea de investigación: <i>Derechos Humanos, Juventud, Migración</i></h6>
-                    </div>
-                    <br>
-                    <button type="button" class="btn btn-info">Info</button>
-               </div>
-               <div class="investigador-card">
-                   <div class="img-border-rounded">
-                       <img src="../public/images/investigadores/foto Elisa.jpg">
-                    </div>
-                    <div class="investigadores-card--info">
-                        <h4>Elisa Cárdenas Ayala</h4>
-                        <h5>Doctora</h5>
-                        <h6>Líneas de investigación: <i>Secularización y política</i>, <i>Historia urgente</i></h6>
-                    </div>
-                    <br>
-                    <button type="button" class="btn btn-info">Info</button>
-               </div>
+                @endforeach
            </div>
 
         </section>
@@ -270,7 +212,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="callout-btn-box"><a class="btn btn-w btn-round" href="portfolio_boxed_gutter_col_3.html">Ver todos</a></div>
+                        <div class="callout-btn-box"><a class="btn btn-w btn-round" href={{ route('investigadores.index') }} >Ver todos</a></div>
                     </div>
                 </div>
             </div>
@@ -410,54 +352,72 @@
 
 @section('modal')
 {{-- Modal --}}
-<div class="modal fade" id='modalInvest'>
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div class="img-border-rounded">
-                    <img src="../public/images/investigadores/Jorge Alonso foto.jpg">
+@foreach ($investigadores as $investigador)
+    <div class="modal fade" id={{'modalInvest-'.$investigador->id}}>
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="img-border-rounded">
+                        @if(Storage::disk('images-investigadores')->has($investigador->image))
+                            <img src="{{url('/storage/images/investigadores/'.$investigador->image)}}"/>
+                        @endif
+                    </div>
+                    <h1>{{$investigador->nombre.' '.$investigador->apellido}}</h1><br>
                 </div>
-                <h1>Jorge Alonso Sánchez</h1><br>
-            </div>
-            <div class="modal-body">
-                <div class="informacionModal">
-                    <div class="modal-info--item">
-                        <b>Reconocimientos: </b> Investigador Nacional Emérito en el SNI.
-                    </div>
-                    <div class="modal-info--item">
-                        <b>Proyecto de investigación en proceso: </b> Movimientos populares contra los despojos.
-                    </div>
-                    <div class="modal-info--item">
-                        <b>Publicaciones: </b>
-                        "Tres miradas al México de hoy", “Movimientos populares y la pandemia del COVID-19”, “Consolidación y retos del movimiento Mapuche”, “Hacia una nueva revolución copernicana”, “Breve nota en torno a don Pablo González Casanova”.
-                    </div>
-                    <div class="modal-info--item">
-                        <b>Contacto: </b>
-                        jalonso@ciesas.edu.mx
-                    </div>
-                    <div class="modal-info--item">
-                        <b>Grado: </b>
-                        Doctor
-                    </div>
-                    <div class="modal-info--item">
-                        <b>Lineas de investigación: </b>
-                        Antropología política
+                <div class="modal-body">
+                    <div class="informacionModal">
+                        @if($investigador->reconocimientos)
+                            <div class="modal-info--item">
+                                <b>Reconocimientos: </b> {{$investigador->reconocimientos}}
+                            </div>
+                        @endif
+                        @if($investigador->proyecto_invest)
+                            <div class="modal-info--item">
+                                <b>Proyecto de investigación en proceso: </b> {{$investigador->proyecto_invest}}
+                            </div>
+                        @endif
+                        <div class="modal-info--item">
+                            <b>Publicaciones: </b>
+                            {{$investigador->publicaciones}}
+                        </div>
+                        <div class="modal-info--item">
+                            <b>Contacto: </b>
+                            {{$investigador->correo}}
+                        </div>
+                        <div class="modal-info--item">
+                            <b>Grado: </b>
+                            {{$investigador->grado}}
+                        </div>
+                        <div class="modal-info--item">
+                            <b>Lineas de investigación: </b>
+                            {{$investigador->lineasInves}}
+                        </div>
+                        
+                        
                     </div>
                     
-                    
                 </div>
-                
-
-            </div>
-            <div class="modal-footer">
-                <input class="btn btn-primary" data-dismiss="modal" value="Cerrar">
-
+                <div class="modal-footer">
+                    <input class="btn btn-primary" data-dismiss="modal" value="Cerrar">
+                </div>
             </div>
         </div>
-
+        
     </div>
+@endforeach
 
-</div>
+@endsection
 
+@section('js')
+
+<script>
+    function crearModal(idInvestigador){
+
+    
+    document.getElementById('modalInvest').innerHTML = ;
+
+    }
+    document.getElementById('modalInvest').style = "display:inline";
+</script>
 
 @endsection

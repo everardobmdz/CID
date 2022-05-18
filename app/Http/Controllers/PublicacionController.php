@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Publicacion;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\Response;
+
+
 class PublicacionController extends Controller
 {
     /**
@@ -12,25 +17,11 @@ class PublicacionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function indexDivulgacion()
     {
-        $vspublicaciones = Publicacion::all();
-        $publicaciones = $this->cargarInfo($vspublicaciones);
-        return view('publicaciones.index')->width('publicaciones',$publicaciones);
+        $publicaciones = Publicacion::where('activo','=',1,)->orderBy('titulo','desc')->paginate(10);
+        return view('publicaciones.index',compact('publicaciones'));
 
-    }
-
-    public function cargarInfo($consulta){
-        $publicacion = [];
-        foreach($consulta as $key => $value){
-            $area[$key] = array(
-                $value['id'],
-                $value['titulo'],
-                $value['descripcion'],
-                $value['categoria'],
-                $value['link'],
-            );
-        }
     }
 
     /**
@@ -51,7 +42,32 @@ class PublicacionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $this->validate($request,[
+            'titulo'=>'required',
+            'descripcion'=>'required',
+            'image'=>'image|max:5120',
+
+        ]);
+
+        $publicacion = new Publicacion;
+        $publicacion->titulo = $request->input('titulo');
+        $publicacion->descripcion = $request->input('descripcion');
+        $publicacion->link = $request->input('link');
+        $publicacion->anio = $request->input('anio');
+        $publicacion->categoria = $request->input('categoria');
+        
+        $image = $request->input('imagen');
+
+        if($image){
+            $image_path = time().$image->getClientOriginalName();
+            \Storage::disk('images-publicaciones')->put($image_path, \File::get($image));
+            $publicacion->image = $image_path;
+        }
+        $publicacion->save();
+
+        return redirect()->route('publicaciones.create')->with(array(
+            'message'=>'Se ha guardado correctamente'
+        ));
     }
 
     /**
@@ -73,7 +89,8 @@ class PublicacionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $publicacion = Publicacion::find($id);
+        return view('publicaciones.edit',compact('publicacion'));
     }
 
     /**
@@ -85,7 +102,30 @@ class PublicacionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validateData = $this->validate($request,[
+            'titulo'=>'required',
+            'descripcion'=>'required',
+            'image'=>'image|max:5120',
+        ]);
+
+        $publicacion = new Publicacion;
+        $publicacion->titulo = $request->input('titulo');
+        $publicacion->descripcion = $request-> input('descripcion');
+        $publicacion->link = $request->input('link');
+        $publicacion->categoria = $request->input('categoria');
+        
+        $image = $request->input('imagen');
+        if($image){
+            $image_path = time().$image->getClientOriginalName();
+            \Store::disk('images-publicacion')->put($image_path, \File::get($image));
+
+            $publicacion->image = $image_path;
+        }
+        $publicacion->update();
+
+        return redirect()->route('publicaciones.create')->with(array(
+            'message'=>'Se ha actualizado correctamente'
+        ));
     }
 
     /**
