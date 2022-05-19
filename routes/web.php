@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InvestigadorController;
 use App\Http\Controllers\EventoController;
+use App\Http\Controllers\LibroController;
 use App\Http\Controllers\PublicacionController;
 use App\Http\Controllers\WelcomeController;
 
@@ -24,14 +25,20 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Auth::routes();
 
+
+
+
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Route::get('/investigadores',[InvestigadorController::class,'index']);
 // Route::get('/investigadores',[InvestigadorController::class,'create']);
 // Route::get('/investigadores/edit',[InvestigadorController::class,'edit']);
+
 Route::get('/investigadores/indexAdmin',[InvestigadorController::class,'indexAdmin'])->name('investigadores.indexAdmin');
 Route::get('/eventos/indexAdmin',[EventoController::class,'indexAdmin'])->name('eventos.indexAdmin');
-Route::get('/eventos/{evento}',[EventoController::class,'show'])->name('eventos.show');   
+Route::get('/libros/indexAdmin',[LibroController::class,'indexAdmin'])->name('libros.indexAdmin');
+Route::get('/eventos/{evento}',[EventoController::class,'show'])->name('eventos.show'); 
 
 Route::get('/',[WelcomeController::class,'index'])->name('welcome');
 
@@ -40,6 +47,7 @@ Route::get('/eventos',[EventoController::class,'index']);
 Route::resource('investigadores', 'App\Http\Controllers\InvestigadorController');
 Route::resource('/eventos','App\Http\Controllers\EventoController');
 Route::resource('/','App\Http\Controllers\WelcomeController');
+Route::resource('libros',LibroController::class);
 
 
 Route::get('/images/investigadores/{filename}', array(
@@ -68,4 +76,9 @@ Route::get('/delete-evento/{evento_id}', array(
     'as' => 'delete-evento',
     'middleware' => 'auth',
     'uses' => 'App\Http\Controllers\InvestigadorController@delete_evento'
+));
+Route::get('/delete-libro/{libro_id}', array(
+    'as' => 'delete-libro',
+    'middleware' => 'auth',
+    'uses' => 'App\Http\Controllers\LibroController@delete_libro'
 ));

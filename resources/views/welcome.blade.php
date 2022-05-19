@@ -226,15 +226,15 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="mb-sm-20 wow fadeInUp col-sm-6 col-md-6" onclick="wow fadeInUp">
-                        <div class="team-item bg-dark bg-gradient" style='background-image: url("../public/images/Libros.jpg")'>
+                    <div class="mb-sm-20 wow fadeInUp col-sm-6 col-md-6">
+                        <a href="{{route('libros.index')}}" class="team-item bg-dark bg-gradient" style='background-image: url("../public/images/Libros.jpg")'>
                             <p class="u-non-blurred">Libros y capítulos</p>
-                        </div>
+                        </a>
                     </div>
                     <div class="mb-sm-20 wow fadeInUp col-sm-6 col-md-6" onclick="wow fadeInUp">
-                        <div class="team-item bg-dark bg-gradient" style='background-image: url("../public/images/Revistas.jpg")'>  
+                        <a class="team-item bg-dark bg-gradient" style='background-image: url("../public/images/Revistas.jpg")'>  
                             <p class="u-non-blurred">Artículos en revistas científicas</p>
-                        </div>
+                        </a >
                     </div>
                 </div>
             </div>

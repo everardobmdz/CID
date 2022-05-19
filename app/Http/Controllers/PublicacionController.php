@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Publicacion;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -22,6 +21,11 @@ class PublicacionController extends Controller
         $publicaciones = Publicacion::where('activo','=',1,)->orderBy('titulo','desc')->paginate(10);
         return view('publicaciones.index',compact('publicaciones'));
 
+    }
+    public function indexLibros()
+    {
+        $libros = Publicacion::where('activo','=',1)->where('categoria','=',1)->orderBy('titulo','desc')->paginate(10);
+        return view('publicaciones.libros.index',compact('libros'));
     }
 
     /**
