@@ -140,9 +140,9 @@
                                     
 
                                     <div class="extension-element col-md-6 col-lg-3">
-                                        <a style="justify-content: flex-end; background-image: url('../public/images/catalogo.jpg');" class="extension-container bg-extension2" target="_blank" href="https://docs.google.com/spreadsheets/d/1IMWvKkySg5aHb3dfXgQj-F7HJ1Cdw8qj/edit#gid=498495349">
-                                            <div style="width: 100%; background:white; padding-top:10px 0;">
-                                                <p>Catálogo de biblioteca</p>
+                                        <a style="background-size:cover; justify-content: flex-end; background-image: url('../public/images/catalogo.jpg');" class="extension-container bg-extension2" target="_blank" href="https://docs.google.com/spreadsheets/d/1IMWvKkySg5aHb3dfXgQj-F7HJ1Cdw8qj/edit#gid=498495349">
+                                            <div style="color:white; width: 100%; background:rgba(0,0,0,0.7); padding:10px;">
+                                                <p class="m-0">Catálogo de biblioteca</p>
                                             </div>
                                         </a>
 

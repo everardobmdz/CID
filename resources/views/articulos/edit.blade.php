@@ -11,7 +11,7 @@
 
             <div class="row">
                 <div class="col-md-auto ml-3">
-                    <h2>Captura de Libros o capitulos</h2>
+                    <h2>Captura de Artículos</h2>
                 </div>
                 <hr>
                 <script type="text/javascript">
@@ -27,7 +27,7 @@
 
             <div class="row">
                 <div class="col-12">
-                    <form action="{{ route('libros.update',$libro->id) }}" method="post" enctype="multipart/form-data" class="col-12">
+                    <form action="{{ route('articulos.update',$articulo->id) }}" method="post" enctype="multipart/form-data" class="col-12">
                         {!! csrf_field() !!}
                         @if ($errors->any())
                             <div class="alert alert-danger">
@@ -43,15 +43,22 @@
                         <div class="row align-items-center">
                             <div class="col-md-12">
                                 <label class="font-weight-bold" for="titulo">Titulo* </label>
-                                <input value="{{$libro->titulo}}"  type="text" class="form-control" id="titulo" name="titulo">
+                                <input value="{{$articulo->titulo}}" type="text" class="form-control" id="titulo" name="titulo">
                             </div>
                             
                         </div>
                         <br>
                         <div class="row align-items-center">
                             <div class="col-md-12">
-                                <label class="font-weight-bold" for="descripcion">Datos del libro* </label>
-                                <textarea class="form-control" id="descripcion" name="descripcion">{{$libro->descripcion}}</textarea>
+                                <label class="font-weight-bold" for="descripcion">Datos del artículo* </label>
+                                <textarea class="form-control" id="descripcion" name="descripcion">{{$articulo->descripcion}}</textarea>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row align-items-center">
+                            <div class="col-md-3">
+                                <label class="font-weight-bold" for="anio">Año* </label>
+                                <input value="{{$articulo->anio}}" type="text" class="form-control" id="anio" name="anio">
                             </div>
                         </div>
   

@@ -16,16 +16,9 @@ class PublicacionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexDivulgacion()
-    {
-        $publicaciones = Publicacion::where('activo','=',1,)->orderBy('titulo','desc')->paginate(10);
-        return view('publicaciones.index',compact('publicaciones'));
-
-    }
-    public function indexLibros()
-    {
-        $libros = Publicacion::where('activo','=',1)->where('categoria','=',1)->orderBy('titulo','desc')->paginate(10);
-        return view('publicaciones.libros.index',compact('libros'));
+    public function getImage($filename){
+        $file = Storage::disk('images-publicaciones')->get($filename);
+        return new Response($file, 200);
     }
 
     /**

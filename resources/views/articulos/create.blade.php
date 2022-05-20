@@ -11,7 +11,7 @@
 
             <div class="row">
                 <div class="col-md-auto ml-3">
-                    <h2>Captura de Libros o capitulos</h2>
+                    <h2>Captura de Artículos</h2>
                 </div>
                 <hr>
                 <script type="text/javascript">
@@ -27,7 +27,7 @@
 
             <div class="row">
                 <div class="col-12">
-                    <form action="{{ route('libros.update',$libro->id) }}" method="post" enctype="multipart/form-data" class="col-12">
+                    <form action="{{ route('articulos.store') }}" method="post" enctype="multipart/form-data" class="col-12">
                         {!! csrf_field() !!}
                         @if ($errors->any())
                             <div class="alert alert-danger">
@@ -43,16 +43,41 @@
                         <div class="row align-items-center">
                             <div class="col-md-12">
                                 <label class="font-weight-bold" for="titulo">Titulo* </label>
-                                <input value="{{$libro->titulo}}"  type="text" class="form-control" id="titulo" name="titulo">
+                                <input type="text" class="form-control" id="titulo" name="titulo" value="{{ old('titulo') }}">
                             </div>
                             
                         </div>
                         <br>
                         <div class="row align-items-center">
                             <div class="col-md-12">
-                                <label class="font-weight-bold" for="descripcion">Datos del libro* </label>
-                                <textarea class="form-control" id="descripcion" name="descripcion">{{$libro->descripcion}}</textarea>
+                                <label class="font-weight-bold" for="descripcion">Descripción del articulo* </label>
+                                <textarea class="form-control" id="descripcion" name="descripcion" value="{{ old('descripcion') }}"></textarea>
                             </div>
+                        </div>
+                        <br>
+                        <div class="row align-items-center">
+                            <div class="col-md-3">
+                                <label class="font-weight-bold" for="anio">Año* </label>
+                                <input type="text" class="form-control" id="anio" name="anio" value="{{ old('anio') }}">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                                <div class="containerImgCreate">
+                                    <img id="createInvesPic" src="../../public/images/defaultPicture.png">
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="font-weight-bold" for="imagen">Imagen</label>
+                                <div class="custom-file">
+                                    <input name="imagen" type="file" class="custom-file-input" id="customFileLang" accept="image/*"
+                                           lang="es">
+                                    <label class="custom-file-label" for="customFileLang">Seleccionar Archivo</label>
+                                </div>
+                            </div>
+
                         </div>
   
                         

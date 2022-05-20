@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InvestigadorController;
 use App\Http\Controllers\EventoController;
+use App\Http\Controllers\ArticuloController;
 use App\Http\Controllers\LibroController;
 use App\Http\Controllers\PublicacionController;
 use App\Http\Controllers\WelcomeController;
@@ -38,6 +39,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/investigadores/indexAdmin',[InvestigadorController::class,'indexAdmin'])->name('investigadores.indexAdmin');
 Route::get('/eventos/indexAdmin',[EventoController::class,'indexAdmin'])->name('eventos.indexAdmin');
 Route::get('/libros/indexAdmin',[LibroController::class,'indexAdmin'])->name('libros.indexAdmin');
+Route::get('/articulos/indexAdmin',[ArticuloController::class,'indexAdmin'])->name('articulos.indexAdmin');
 Route::get('/eventos/{evento}',[EventoController::class,'show'])->name('eventos.show'); 
 
 Route::get('/',[WelcomeController::class,'index'])->name('welcome');
@@ -48,6 +50,7 @@ Route::resource('investigadores', 'App\Http\Controllers\InvestigadorController')
 Route::resource('/eventos','App\Http\Controllers\EventoController');
 Route::resource('/','App\Http\Controllers\WelcomeController');
 Route::resource('libros',LibroController::class);
+Route::resource('articulos',ArticuloController::class);
 
 
 Route::get('/images/investigadores/{filename}', array(
@@ -55,7 +58,11 @@ Route::get('/images/investigadores/{filename}', array(
     'middleware' => 'auth',
     'uses' => 'App\Http\Controllers\InvestigadorController@getImage'
 ));
-
+Route::get('/images/articulos/{filename}', array(
+    'as' => 'images',
+    'middleware' => 'auth',
+    'uses' => 'App\Http\Controllers\ArticuloController@getImage'
+));
 Route::get('/images/eventos/{filename}', array(
     'as' => 'images',
     'middleware' => 'auth',
@@ -64,7 +71,7 @@ Route::get('/images/eventos/{filename}', array(
 Route::get('/images/publicaciones/{filename}', array(
     'as' => 'images',
     'middleware' => 'auth',
-    'uses' => 'App\Http\Controllers\PublicacionController@getImage'
+    'uses' => 'App\Http\Controllers\ArticuloController@getImage'
 ));
 Route::get('/delete-investigador/{investigador_id}', array(
     'as' => 'delete-investigador',
@@ -81,4 +88,9 @@ Route::get('/delete-libro/{libro_id}', array(
     'as' => 'delete-libro',
     'middleware' => 'auth',
     'uses' => 'App\Http\Controllers\LibroController@delete_libro'
+));
+Route::get('/delete-articulo/{articulo_id}', array(
+    'as' => 'delete-articulo',
+    'middleware' => 'auth',
+    'uses' => 'App\Http\Controllers\ArticuloController@delete_articulo'
 ));

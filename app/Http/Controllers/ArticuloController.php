@@ -1,12 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Publicacion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class LibroController extends Controller
+class ArticuloController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,24 +14,34 @@ class LibroController extends Controller
      */
     public function index()
     {
-        $libros = Publicacion::where('activo','=',1)->where('categoria','=',1)->orderBy('titulo','desc')->paginate(10);
-        return view('libros.index',compact('libros'));
+        $articulos = Publicacion::where('activo','=',1)->where('categoria','=',2)->orderBy('titulo','desc')->paginate(10);
+        return view('articulos.index',compact('articulos'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('articulos.create');
     }
     public function indexAdmin()
     {
-        $vslibros = Publicacion::where('activo','=',1)->where('categoria','=',1)->get();
-        $libros = $this->cargarDT($vslibros);
-        return view('libros.indexAdmin',compact('libros'));
+        $vsarticulos = Publicacion::where('activo','=',1)->where('categoria','=',2)->get();
+        $articulos = $this->cargarDT($vsarticulos);
+        return view('articulos.indexAdmin',compact('articulos'));
     }
     public function cargarDT($consulta)
     {
-        $libro = [];
+        $articulo = [];
 
         foreach ($consulta as $key => $value){
 
             $ruta = "eliminar".$value['id'];
-            $eliminar = route('delete-libro', $value['id']);
-            $actualizar =  route('libros.edit', $value['id']);
+            $eliminar = route('delete-articulo', $value['id']);
+            $actualizar =  route('articulos.edit', $value['id']);
          
 
             $acciones = '
@@ -50,7 +59,7 @@ class LibroController extends Controller
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">¿Seguro que deseas eliminar este libro?</h5>
+                      <h5 class="modal-title" id="exampleModalLabel">¿Seguro que deseas eliminar este articulo?</h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -70,26 +79,17 @@ class LibroController extends Controller
               </div>
             ';
 
-            $libro[$key] = array(
+            $articulo[$key] = array(
                 $acciones,
                 $value['id'],
                 $value['titulo'],
                 $value['descripcion'],
+                $value['anio'],
             );
 
         }
 
-        return $libro;
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('libros.create');
+        return $articulo;
     }
 
     /**
@@ -106,22 +106,31 @@ class LibroController extends Controller
             'descripcion'=>'required',
         ]);
         
-        $libro = new Publicacion();
-        $libro->titulo = $request->input('titulo');
-        $libro->descripcion = $request->input('descripcion');
-        $libro->categoria = 1;
+        $articulo = new Publicacion();
+        $articulo->titulo = $request->input('titulo');
+        $articulo->descripcion = $request->input('descripcion');
+        $articulo->anio = $request->input('anio');
+        $articulo->categoria = 2;
+
+        $image = $request->file('imagen');
+        if($image){
+           $image_path = time().$image->getClientOriginalName();
+           \Storage::disk('images-publicaciones')->put($image_path, \File::get($image));
+        
+           $articulo->image = $image_path;
+        }
 
 
-        $libro->save();
-        return redirect()->route('libros.create')->with(array(
-            'message'=>'El libro se guardó correctamente'
+        $articulo->save();
+        return redirect()->route('articulos.create')->with(array(
+            'message'=>'El articulo se guardó correctamente'
         ));
     }
-    public function delete_evento($libro_id){
-        $libro = Publicacion::find($libro_id);
-        if($libro){
-            $libro->activo = 0;
-            $libro->update();
+    public function delete_evento($articulo_id){
+        $articulo = Publicacion::find($articulo_id);
+        if($articulo){
+            $articulo->activo = 0;
+            $articulo->update();
 	    // //
         //     $log = new Log();
         //     $log->tabla = "areas";
@@ -134,12 +143,12 @@ class LibroController extends Controller
         //     $log->acciones = "Borrado";
         //     $log->save();
             //
-            return redirect()->route('libros.indexAdmin')->with(array(
-               "message" => "El libro se ha eliminado correctamente"
+            return redirect()->route('articulos.indexAdmin')->with(array(
+               "message" => "El articulo se ha eliminado correctamente"
             ));
         }else{
             return redirect()->route('home')->with(array(
-               "message" => "El libro que trata de eliminar no existe"
+               "message" => "El articulo que trata de eliminar no existe"
             ));
         }
 
@@ -149,13 +158,16 @@ class LibroController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response2
      */
     public function show($id)
     {
         //
     }
-
+    public function getImage($filename){
+        $file = Storage::disk('images-publicaciones')->get($filename);
+        return new Response($file, 200);
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -164,8 +176,8 @@ class LibroController extends Controller
      */
     public function edit($id)
     {
-        $libro = Publicacion::find($id);
-        return view('libros.edit')->with('libro', $libro);
+        $articulo = Publicacion::find($id);
+        return view('articulos.edit')->with('articulo', $articulo);
     }
 
     /**
@@ -183,18 +195,26 @@ class LibroController extends Controller
 
         ]);
 
-        $libro = Publicacion::find($id);
-        $libro->titulo = $request->input('titulo');
-        $libro->descripcion = $request->input('descripcion');
-        $libro->categoria = 1;
+        $articulo = Publicacion::find($id);
+        $articulo->titulo = $request->input('titulo');
+        $articulo->descripcion = $request->input('descripcion');
+        $articulo->anio = $request->input('anio');
+        $articulo->categoria = 2;
 
+        $image = $request->file('imagen');
+        if($image){
+           $image_path = time().$image->getClientOriginalName();
+           \Storage::disk('images-publicaciones')->put($image_path, \File::get($image));
+        
+           $articulo->image = $image_path;
+        }
 
 
         
 
-        $libro->update();
-        return redirect()->route('libros.indexAdmin')->with(array(
-            'message'=>'El libro se actualizó correctamente'
+        $articulo->update();
+        return redirect()->route('articulos.indexAdmin')->with(array(
+            'message'=>'El articulo se actualizó correctamente'
         ));
     }
 
