@@ -4,9 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InvestigadorController;
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\ArticuloController;
+use App\Http\Controllers\DivulgacionController;
 use App\Http\Controllers\LibroController;
 use App\Http\Controllers\PublicacionController;
 use App\Http\Controllers\WelcomeController;
+use App\Models\Publicacion;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,13 +23,11 @@ use App\Http\Controllers\WelcomeController;
 */
 
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//     return view('dashboard');
+// })->name('dashboard');
 
-Auth::routes();
-
-
+// Auth::routes();
 
 
 
@@ -40,18 +41,24 @@ Route::get('/investigadores/indexAdmin',[InvestigadorController::class,'indexAdm
 Route::get('/eventos/indexAdmin',[EventoController::class,'indexAdmin'])->name('eventos.indexAdmin');
 Route::get('/libros/indexAdmin',[LibroController::class,'indexAdmin'])->name('libros.indexAdmin');
 Route::get('/articulos/indexAdmin',[ArticuloController::class,'indexAdmin'])->name('articulos.indexAdmin');
-Route::get('/eventos/{evento}',[EventoController::class,'show'])->name('eventos.show'); 
+Route::get('/divulgaciones/indexAdmin',[DivulgacionController::class,'indexAdmin'])->name('divulgaciones.indexAdmin');
 
-Route::get('/',[WelcomeController::class,'index'])->name('welcome');
+
 
 Route::get('/eventos',[EventoController::class,'index']);
+
+
 
 Route::resource('investigadores', 'App\Http\Controllers\InvestigadorController');
 Route::resource('/eventos','App\Http\Controllers\EventoController');
 Route::resource('/','App\Http\Controllers\WelcomeController');
 Route::resource('libros',LibroController::class);
 Route::resource('articulos',ArticuloController::class);
+Route::resource('divulgaciones',DivulgacionController::class);
+Route::resource('publicaciones',PublicacionController::class);
 
+Route::get('eventos/{evento}',[EventoController::class,'show'])->name('eventos.show'); 
+Route::get('divulgaciones/{divulgacion}',[EventoController::class,'show'])->name('divulgaciones.show'); 
 
 Route::get('/images/investigadores/{filename}', array(
     'as' => 'images',
@@ -93,4 +100,9 @@ Route::get('/delete-articulo/{articulo_id}', array(
     'as' => 'delete-articulo',
     'middleware' => 'auth',
     'uses' => 'App\Http\Controllers\ArticuloController@delete_articulo'
+));
+Route::get('/delete-divulgacion/{divulgacion_id}', array(
+    'as' => 'delete-divulgacion',
+    'middleware' => 'auth',
+    'uses' => 'App\Http\Controllers\DivulgacionController@delete_divulgacion'
 ));

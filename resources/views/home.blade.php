@@ -34,7 +34,7 @@
                                     <br>
                                     <div class="row align-items-center">
                                         <div class="col-md-3 offset-md-1 text-end">
-                                            <h3 class="card-title"><span class="text-success"><i class="fa fa-search"></span></i> Búsqueda</3>
+                                            <h3 class="card-title"><span class="text-success"><i class="fa fa-search"></span></i> Búsqueda</h3>
                                         </div>
                                         <div class="col-md-5">
                                             <input type="text" class="form-control" id="busqueda" name="busqueda" />
@@ -122,8 +122,8 @@
                                                 <i class="material-icons">campaign</i>
                                             </div>
                                             <h3 class="card-title">Divulgación</h3>
-                                            <a class="btn btn-outline-success mb-2" href="" >Capturar Publicación</a>
-                                            <a class="btn btn-outline-danger mb-2" href="" >Consultar Publicaciones</a>
+                                            <a class="btn btn-outline-success mb-2" href="{{route("divulgaciones.create")}}" >Capturar Publicación</a>
+                                            <a class="btn btn-outline-danger mb-2" href="{{route("divulgaciones.indexAdmin")}}" >Consultar Publicaciones</a>
                                         </div>
                                         <div class="card-footer p-2">
                                             
@@ -141,8 +141,8 @@
                                                 <i class="material-icons">menu_book</i>
                                             </div>
                                             <h3 class="card-title">Libros y capítulos</h3>
-                                            <a class="btn btn-outline-success mb-2" href="" >Capturar Libro</a>
-                                            <a class="btn btn-outline-danger mb-2" href="" >Consultar Libros</a>
+                                            <a class="btn btn-outline-success mb-2" href="{{route("libros.create")}}" >Capturar Libro</a>
+                                            <a class="btn btn-outline-danger mb-2" href="{{route("libros.indexAdmin")}}" >Consultar Libros</a>
                                         </div>
                                         <div class="card-footer p-2">
                                             
@@ -160,8 +160,8 @@
                                             <i class="material-icons">newspaper</i>
                                             </div>
                                             <h3 class="card-title">Artículos en revistas científicas</h3>
-                                            <a class="btn btn-outline-success mb-2" href="">Capturar artículo</a>
-                                            <a class="btn btn-outline-danger mb-2" href="">Consultar artículos</a>
+                                            <a class="btn btn-outline-success mb-2" href="{{route("articulos.create")}}">Capturar artículo</a>
+                                            <a class="btn btn-outline-danger mb-2" href="{{route("articulos.indexAdmin")}}">Consultar artículos</a>
                                         </div>
                                         <div class="card-footer p-2">
                                             

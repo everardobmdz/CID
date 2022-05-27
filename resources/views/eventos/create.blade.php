@@ -13,15 +13,6 @@
                 <div class="col-md-auto ml-3">
                     <h2>Captura de Evento</h2>
                 </div>
-                <hr>
-                <script type="text/javascript">
-
-                    $(document).ready(function() {
-                        $('#js-example-basic-single').select2();
-
-                    });
-
-                </script>
 
             </div>
 

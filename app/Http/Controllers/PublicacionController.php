@@ -11,6 +11,9 @@ use Symfony\Component\HttpFoundation\Response;
 
 class PublicacionController extends Controller
 {
+    public function index(){
+        return view("publicaciones.index");
+    }
     /**
      * Display a listing of the resource.
      *

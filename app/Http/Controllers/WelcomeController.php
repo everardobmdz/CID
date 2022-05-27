@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Evento;
 use App\Models\Investigador;
+use App\Models\Publicacion;
+
 
 
 use Illuminate\Http\Request;
@@ -19,7 +21,8 @@ class WelcomeController extends Controller
     {
         $eventos = Evento::where('activo','=',1)->orderBy('fecha','DESC')->take(3)->get();
         $investigadores = Investigador::where('activo','=',1)->orderBy('apellido','asc')->take(3)->get();
-        return view('welcome',['eventos'=>$eventos,'investigadores'=>$investigadores]);
+        $divulgaciones = Publicacion::where('activo','=',1)->where('categoria','=',3)->orderBy('titulo','desc')->take(3)->get();
+        return view('welcome',['eventos'=>$eventos,'investigadores'=>$investigadores,'divulgaciones'=>$divulgaciones]);
     }
 
     /**

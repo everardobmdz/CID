@@ -15,10 +15,6 @@
     -->
 
     <link rel="icon" type="image/png" href="/CID/public/images/desmosIcon.png">
-    <link rel="manifest" href="/manifest.json">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="../public/images/favicons/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
 
     <!-- CACHE -->
     <meta http-equiv="Expires" content="0">
@@ -48,9 +44,11 @@
     <link href="/CID/public/lib/owl.carousel/dist/assets/owl.theme.default.min.css" rel="stylesheet">
     <link href="/CID/public/lib/magnific-popup/dist/magnific-popup.css" rel="stylesheet">
     <link href="/CID/public/lib/simple-text-rotator/simpletextrotator.css" rel="stylesheet">
+
+
+
     <!-- Main stylesheet and color file-->
     <link href="/CID/public/css/style.css" rel="stylesheet">
-    <link id="color-scheme" href="/CID/public/css/colors/default.css" rel="stylesheet">
 </head>
 <body data-spy="scroll" data-target=".onpage-navigation" data-offset="60">
 <main>
@@ -66,22 +64,22 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="{{asset('/')}}">Inicio <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="#totop">Inicio <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="section-scroll nav-link" href="#services">Quiénes somos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="section-scroll nav-link" href="{{route('investigadores.index')}}">Investigadores</a></a>
+                    <a class="section-scroll nav-link" href="#works">Investigadores</a></a>
                 </li>
                 <li class="nav-item">
-                    <a class="section-scroll nav-link" href="{{route('publicaciones.index')}}">Publicaciones</a></a>
+                    <a class="section-scroll nav-link" href="#team">Publicaciones</a></a>
                 </li>
                 <li class="nav-item">
-                    <a class="section-scroll nav-link" href="{{route('divulgaciones.index')}}">Divulgación</a></a>
+                    <a class="section-scroll nav-link" href="#news">Divulgación</a></a>
                 </li>
                 <li class="nav-item">
-                    <a class="section-scroll nav-link"  href="{{ route('eventos.index') }}">Eventos</a></a>
+                    <a class="section-scroll nav-link"  href={{ route('eventos.index') }}>Eventos</a></a>
                 </li>
                 <li class="nav-item">
                     <a class="section-scroll nav-link"  href="#contact">Contacto</a></a>

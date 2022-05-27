@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Evento;
+use App\Models\Publicacion;;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
 
-class EventoController extends Controller
+class DivulgacionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,27 +15,25 @@ class EventoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    { 
-        
-        $eventos = Evento::where('activo','=',1)->orderBy('fecha','desc')->paginate(3);
-        return view('eventos.index',compact('eventos'));
+    {
+        $divulgaciones = Publicacion::where("activo",'=',1)->where('categoria','=',3)->orderBy('titulo','desc')->paginate(10);
+        return view('divulgaciones.index',compact('divulgaciones'));
     }
-
     public function indexAdmin()
     {
-        $vsevento = Evento::where('activo','=',1)->get();
-        $eventos = $this->cargarDT($vsevento);
-        return view('eventos.indexAdmin',compact('eventos'));
+        $vsdivulgaciones = Publicacion::where("activo","=",1)->where("categoria","=",3)->get();
+        $divulgaciones = $this->cargarDT($vsdivulgaciones);
+        return view('divulgaciones.indexAdmin',compact('divulgaciones'));
     }
     public function cargarDT($consulta)
     {
-        $evento = [];
+        $divulgacion = [];
 
         foreach ($consulta as $key => $value){
 
             $ruta = "eliminar".$value['id'];
-            $eliminar = route('delete-evento', $value['id']);
-            $actualizar =  route('eventos.edit', $value['id']);
+            $eliminar = route('delete-divulgacion', $value['id']);
+            $actualizar =  route('divulgaciones.edit', $value['id']);
          
 
             $acciones = '
@@ -53,7 +51,7 @@ class EventoController extends Controller
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">¿Seguro que deseas eliminar este evento?</h5>
+                      <h5 class="modal-title" id="exampleModalLabel">¿Seguro que deseas eliminar este post?</h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -73,19 +71,18 @@ class EventoController extends Controller
               </div>
             ';
 
-            $evento[$key] = array(
+            $divulgacion[$key] = array(
                 $acciones,
                 $value['id'],
                 $value['titulo'],
-                $value['fecha'],
                 $value['descripcion'],
+                $value['link'],
             );
 
         }
 
-        return $evento;
+        return $divulgacion;
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -94,8 +91,9 @@ class EventoController extends Controller
      */
     public function create()
     {
-        return view('eventos.create');
+        return view('divulgaciones.create');
     }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -104,47 +102,30 @@ class EventoController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $validateData = $this->validate($request,[
             'titulo'=>'required',
             'descripcion'=>'required',
-            'fecha'=>'required',
-            'image'=>'image|max:5120',
+            'link'=>'required'
         ]);
-        
-        $evento = new Evento();
-        $evento->titulo = $request->input('titulo');
-        $evento->descripcion = $request->input('descripcion');
 
-        $evento->fecha = $request->input('fecha');
+        $divulgacion = new Publicacion();
 
+        $divulgacion->titulo = $request->input('titulo');
+        $divulgacion->descripcion = $request->input('descripcion');
+        $divulgacion->link = $request->input('link');
+        $divulgacion->categoria = 3;
 
+        $divulgacion->save();
 
-        $image = $request->file('imagen');
-        if($image){
-           $image_path = time().$image->getClientOriginalName();
-           \Storage::disk('images-eventos')->put($image_path, \File::get($image));
-        
-           $evento->image = $image_path;
-        }
-
-        
-
-        $evento->save();
-        return redirect()->route('eventos.create')->with(array(
-            'message'=>'El evento se guardó correctamente'
+        return redirect()->route('divulgaciones.create')->with(array(
+            'message'=>'El post se guardó correctamente'
         ));
     }
-    public function getImage($filename){
-        $file = Storage::disk('images-eventos')->get($filename);
-        return new Response($file, 200);
-    }
-
-    public function delete_evento($evento_id){
-        $evento = Evento::find($evento_id);
-        if($evento){
-            $evento->activo = 0;
-            $evento->update();
+    public function delete_divulgacion($divulgacion_id){
+        $divulgacion = Publicacion::find($divulgacion_id);
+        if($divulgacion){
+            $divulgacion->activo = 0;
+            $divulgacion->update();
 	    // //
         //     $log = new Log();
         //     $log->tabla = "areas";
@@ -157,12 +138,12 @@ class EventoController extends Controller
         //     $log->acciones = "Borrado";
         //     $log->save();
             //
-            return redirect()->route('eventos.indexAdmin')->with(array(
-               "message" => "El evento se ha eliminado correctamente"
+            return redirect()->route('divulgacion.indexAdmin')->with(array(
+               "message" => "El post se ha eliminado correctamente"
             ));
         }else{
             return redirect()->route('home')->with(array(
-               "message" => "El evento que trata de eliminar no existe"
+               "message" => "El post que trata de eliminar no existe"
             ));
         }
 
@@ -174,10 +155,12 @@ class EventoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Evento $evento)
+    public function show($divulgacion_id)
     {
-        return view('eventos.show',compact('evento'));
+        $divulgacion = Publicacion::where("activo","=",1)->where("categoria","=",3)->find($divulgacion_id);
+        return view('divulgaciones.show',compact('divulgacion'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -187,8 +170,8 @@ class EventoController extends Controller
      */
     public function edit($id)
     {
-        $evento = Evento::find($id);
-        return view('eventos.edit')->with('evento', $evento);
+        $divulgacion = Publicacion::find($id);
+        return view('divulgaciones.edit',compact('divulgacion'));
     }
 
     /**
@@ -203,29 +186,21 @@ class EventoController extends Controller
         $validateData = $this->validate($request,[
             'titulo'=>'required',
             'descripcion'=>'required',
-            'fecha'=>'required',
-            'image'=>'image|max:5120',
+            'link'=>'required'
         ]);
 
-        $evento = Evento::find($id);
-        $evento->titulo = $request->input('titulo');
-        $evento->descripcion = $request->input('descripcion');
-        $evento->fecha = $request->input('fecha');
+        $divulgacion = Publicacion::find($id);
 
 
-        $image = $request->file('imagen');
-        if($image){
-           $image_path = time().$image->getClientOriginalName();
-           \Storage::disk('images-eventos')->put($image_path, \File::get($image));
-        
-           $evento->image = $image_path;
-        }
+        $divulgacion->titulo = $request->input('titulo');
+        $divulgacion->descripcion = $request->input('descripcion');
+        $divulgacion->link = $request->input('link');
+        $divulgacion->categoria = 3;
 
-        
+        $divulgacion->update();
 
-        $evento->update();
-        return redirect()->route('eventos.indexAdmin')->with(array(
-            'message'=>'El evento se actualizó correctamente'
+        return redirect()->route('divulgaciones.create')->with(array(
+            'message'=>'El post se actualizó correctamente'
         ));
     }
 

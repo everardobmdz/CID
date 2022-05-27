@@ -29,6 +29,7 @@
                 <div class="col-12">
                     <form action="{{ route('articulos.update',$articulo->id) }}" method="post" enctype="multipart/form-data" class="col-12">
                         {!! csrf_field() !!}
+                        {{ method_field('PUT') }}
                         @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
@@ -66,7 +67,7 @@
                         <br>
                         <div class="row align-items-center">
                             <div class="col-md-6">
-                                <a href="{{ route('home') }}" class="btn btn-danger">Cancelar</a>
+                                <a href="{{ route('articulos.indexAdmin') }}" class="btn btn-danger">Cancelar</a>
                                 <button type="submit" class="btn btn-success">
                                     Guardar datos
                                     <i class="ml-1 fas fa-save"></i>

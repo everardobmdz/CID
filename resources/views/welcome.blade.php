@@ -1,4 +1,4 @@
-@extends('layouts.plantilla')
+@extends('layouts.plantillaIndex')
 @section('content')
     <section id="home" class="ftco-section bg-light">
         <div class="container news-section">
@@ -249,67 +249,32 @@
 
                     </div>
                 </div>
+                
                 <div class="row multi-columns-row post-columns">
-                    <div class="col-sm-6 col-md-4 col-lg-4">
-                        <div class="post mb-20">
-                        <div class="video-responsive">
-                            <iframe
-                                src="https://www.youtube.com/embed/zw75nL7kw7I"
-                                title="YouTube video player"
-                                frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
-                        </div>
-                            <div class="post-header font-alt">
-                                <h2 class="post-title"><a href="#">Seminario: Ciudadanía Activa, movimientos electorales y candidaturas independientes.</a></h2>
+                    @foreach($divulgaciones as $divulgacion)
+                        <div class="col-sm-6 col-md-4 col-lg-4">
+                            <div class="post mb-20">
+                                <div class="video-responsive">
+                                    <iframe
+                                    
+                                        src="{{'https://www.youtube.com/embed/'.explode('=',$divulgacion->link)[1]}}"
+                                        title="YouTube video player"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen></iframe>
+                                </div>
+                                <div class="post-header font-alt">
+                                    <h2 class="post-title"><a href="{{route('divulgaciones.show',$divulgacion->id)}}">{{$divulgacion->titulo}}</a></h2>
 
+                                </div>
+                                <div class="post-entry">
+                                    <p>{!!strip_tags($divulgacion->descripcion)!!}</p>
+                                </div>
+                                <div class="post-more"><a class="more-link" href="{{route('divulgaciones.show',$divulgacion->id)}}">Leer más</a></div>
                             </div>
-                            <div class="post-entry">
-                                <p>Seminario: Ciudadanía Activa, movimientos electorales y candidaturas independientes. Sesión 12 del Seminario Permanente: Movimientos Sociales, Acción Colectiva y Política. Participan: Javier Atilano (UNAM), Jorge Federico Eufracio Jaramillo (ITESO), Mariana Casillas (UdeG/Futuro). Modera: Denise Córdova (LAMAR). Realizado el día 23 de noviembre de 2021.</p>
-                            </div>
-                            <div class="post-more"><a class="more-link" href="#">Leer más</a></div>
                         </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-4">
-                        <div class="post mb-20">
-                        <div class="video-responsive">
-                            <iframe
-                                src="https://www.youtube.com/embed/IZFHYZn87KU"
-                                title="YouTube video player"
-                                frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
-                        </div>
-                            <div class="post-header font-alt">
-                                <h2 class="post-title"><a href="#">Seminario: Migración, caravanas y movilización social.</a></h2>
-
-                            </div>
-                            <div class="post-entry">
-                                <p>Seminario: Migración, caravanas y movilización social.  Sesión 11 del  Seminario Permanente: Movimientos Sociales, Acción Colectiva y Política. Participan: Diego Noel Ramos Rojas (UdeG), Virginia Betancourt (Colegio de Michoacán), Etol Exime (Universidad Estadual do Oeste de Paraná) e Iván Zambrano Zúñiga (Colegio de Jalisco). Modera: Esther Svetlana Velázquez Mancilla (ENES/UNAM). Realizado el día 19 de octubre del 2021.</p>
-                            </div>
-                            <div class="post-more"><a class="more-link" href="#">Leer más</a></div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-4">
-                        <div class="post mb-20">
-                        <div class="video-responsive">
-                            <iframe
-                                src="https://www.youtube.com/embed/z_Ygk_l1Up8"
-                                title="YouTube video player"
-                                frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
-                        </div>
-                            <div class="post-header font-alt">
-                                <h2 class="post-title"><a href="#">Seminario: Reflexiones Ayotzinapa. Memoria, justicia y acción colectiva.</a></h2>
-
-                            </div>
-                            <div class="post-entry">
-                                <p>Seminario: Reflexiones Ayotzinapa. Memoria, justicia y acción colectiva. Sesión 10 del Seminario Permanente: Movimientos Sociales, Acción Colectiva y Política. Participan: Alejandra Márquez Colectivo Digna Locura), Darwin Franco (ITESO), Santos Urbina (UdeG), Perla López Fuerte (Colegio de Jalisco). Modera: Carolina Montero (Observatorio de Movimientos Sociales). Realizado el día 28 de septiembre del 2021. </p>
-                            </div>
-                            <div class="post-more"><a class="more-link" href="#">Leer más</a></div>
-                        </div>
-                    </div>
+                    @endforeach   
+                    
                 </div>
             </div>
         </section>
@@ -317,7 +282,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="callout-btn-box"><a class="btn btn-w btn-round" href="portfolio_boxed_gutter_col_3.html">Ver más</a></div>
+                        <div class="callout-btn-box"><a class="btn btn-w btn-round" href="{{route("divulgaciones.index")}}">Ver más</a></div>
                     </div>
                 </div>
             </div>
