@@ -14,10 +14,10 @@
     =============================================
     -->
 
-    <link rel="icon" type="image/png" href="/CID/public/images/desmosIcon.png">
+    <link rel="icon" type="image/png" href="{{asset('/images/desmosIcon.png')}}">
     <link rel="manifest" href="/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="../public/images/favicons/ms-icon-144x144.png">
+    <meta name="msapplication-TileImage" content="{{asset('/images/favicons/ms-icon-144x144.png')}}">
     <meta name="theme-color" content="#ffffff">
 
     <!-- CACHE -->
@@ -40,17 +40,17 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Volkhov:400i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
-    <link href="/CID/public/lib/animate.css/animate.css" rel="stylesheet">
-    <link href="/CID/public/lib/components-font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="/CID/public/lib/et-line-font/et-line-font.css" rel="stylesheet">
-    <link href="/CID/public/lib/flexslider/flexslider.css" rel="stylesheet">
-    <link href="/CID/public/lib/owl.carousel/dist/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="/CID/public/lib/owl.carousel/dist/assets/owl.theme.default.min.css" rel="stylesheet">
-    <link href="/CID/public/lib/magnific-popup/dist/magnific-popup.css" rel="stylesheet">
-    <link href="/CID/public/lib/simple-text-rotator/simpletextrotator.css" rel="stylesheet">
+    <link href="{{asset('/lib/animate.css/animate.css')}}" rel="stylesheet">
+    <link href="{{asset('/lib/components-font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
+    <link href="{{asset('/lib/et-line-font/et-line-font.css')}}" rel="stylesheet">
+    <link href="{{asset('/lib/flexslider/flexslider.css')}}" rel="stylesheet">
+    <link href="{{asset('/lib/owl.carousel/dist/assets/owl.carousel.min.css')}}" rel="stylesheet">
+    <link href="{{asset('/lib/owl.carousel/dist/assets/owl.theme.default.min.css')}}" rel="stylesheet">
+    <link href="{{asset('/lib/magnific-popup/dist/magnific-popup.css')}}" rel="stylesheet">
+    <link href="{{asset('/lib/simple-text-rotator/simpletextrotator.css')}}" rel="stylesheet">
     <!-- Main stylesheet and color file-->
-    <link href="/CID/public/css/style.css" rel="stylesheet">
-    <link id="color-scheme" href="/CID/public/css/colors/default.css" rel="stylesheet">
+    <link href="{{asset('/css/style.css')}}" rel="stylesheet">
+    <link id="color-scheme" href="{{asset('/css/colors/default.css')}}" rel="stylesheet">
 </head>
 <body data-spy="scroll" data-target=".onpage-navigation" data-offset="60">
 <main>
@@ -65,26 +65,26 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+                <li class="nav-item" id="inicio-navlink">
                     <a class="nav-link" href="{{asset('/')}}">Inicio <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="section-scroll nav-link" href="#services">Quiénes somos</a>
+                <li class="nav-item" id="somos-navlink">
+                    <a class="section-scroll nav-link" href="{{url('/quienes-somos')}}">Quiénes somos</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" id="investigadores-navlink">
                     <a class="section-scroll nav-link" href="{{route('investigadores.index')}}">Investigadores</a></a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" id="publicaciones-navlink">
                     <a class="section-scroll nav-link" href="{{route('publicaciones.index')}}">Publicaciones</a></a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" id="divulgaciones-navlink">
                     <a class="section-scroll nav-link" href="{{route('divulgaciones.index')}}">Divulgación</a></a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" id="eventos-navlink">
                     <a class="section-scroll nav-link"  href="{{ route('eventos.index') }}">Eventos</a></a>
                 </li>
-                <li class="nav-item">
-                    <a class="section-scroll nav-link"  href="#contact">Contacto</a></a>
+                <li class="nav-item" id="contacto-navlink">
+                    <a class="section-scroll nav-link"  href="{{url('/contacto')}}">Contacto</a></a>
                 </li>
 
                 
@@ -95,7 +95,7 @@
             </form>
         </div>
     </nav>
-    <img class="img-fluid img-homeDesmos" src="/CID/public/images/desmos.jpg">
+    <img class="img-fluid img-homeDesmos" src="{{asset('/images/desmos.jpg')}}">
 
     
     @yield('content')
@@ -107,7 +107,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="widget">
-                        <img src="/CID/public/images/escudo_footer.png">
+                        <img src="{{asset('/images/escudo_footer.png')}}">
                         <p>CENTRO UNIVERSITARIO DE CIENCIAS SOCIALES Y HUMANIDADES</p>
                         <p>Departamento de Estudios sobre Movimientos Sociales (DESMOS)</p>
                         <p>Av. de los Maestros y Av. Alcalde, puerta 1, edificio G, tercer nivel C.P. 44260.</p>
@@ -140,7 +140,7 @@ JavaScripts
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="/CID/public/lib/jquery/dist/jquery.js"></script>
+<script src="{{asset('/lib/jquery/dist/jquery.js')}}"></script>
 {{-- <script src="../public/lib/bootstrap/dist/js/bootstrap.min.js"></script> --}}
 {{-- <script src="../public/lib/wow/dist/wow.js"></script> --}}
 {{-- <script src="../public/lib/jquery.mb.ytplayer/dist/jquery.mb.YTPlayer.js"></script>
@@ -148,11 +148,13 @@ JavaScripts
 {{-- <script src="../public/lib/imagesloaded/imagesloaded.pkgd.js"></script>
 <script src="../public/lib/flexslider/jquery.flexslider.js"></script>
 <script src="../public/lib/owl.carousel/dist/owl.carousel.min.js"></script> --}}
-<script src="/CID/public/lib/smoothscroll.js"></script>
+<script src="{{asset('/lib/smoothscroll.js')}}"></script>
 {{-- <script src="../public/lib/magnific-popup/dist/jquery.magnific-popup.js"></script>
 <script src="../public/lib/simple-text-rotator/jquery.simple-text-rotator.min.js"></script> --}}
-<script src="/CID/public/js/plugins.js"></script>
-<script src="/CID/public/js/main.js"></script>
+<script src="{{asset('/js/plugins.js')}}"></script>
+<script src="{{asset('/js/main.js')}}"></script>
+
+
 
 @yield('modal')
 @yield('js-plantilla')

@@ -31,11 +31,20 @@ use Illuminate\Support\Facades\Auth;
 
 
 
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Route::get('/investigadores',[InvestigadorController::class,'index']);
 // Route::get('/investigadores',[InvestigadorController::class,'create']);
 // Route::get('/investigadores/edit',[InvestigadorController::class,'edit']);
+
+Route::get('/quienes-somos',function(){
+    return view('quienes-somos');
+});
+
+Route::get('/contacto', function(){
+    return view('contacto');
+});
 
 Route::get('/investigadores/indexAdmin',[InvestigadorController::class,'indexAdmin'])->name('investigadores.indexAdmin');
 Route::get('/eventos/indexAdmin',[EventoController::class,'indexAdmin'])->name('eventos.indexAdmin');

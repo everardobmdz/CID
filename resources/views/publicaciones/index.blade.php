@@ -14,7 +14,7 @@
                 </a>
             </div>
             <div class="mb-sm-20 wow fadeInUp col-sm-6 col-md-6" onclick="wow fadeInUp">
-                <a class="team-item bg-dark bg-gradient" style='background-image: url("../public/images/Revistas.jpg")'>  
+                <a href="{{route('articulos.index')}}" class="team-item bg-dark bg-gradient" style='background-image: url("../public/images/Revistas.jpg")'>  
                     <p class="u-non-blurred">Artículos en revistas científicas</p>
                 </a >
             </div>

@@ -1,7 +1,7 @@
 @extends('layouts.plantillaIndex')
 @section('content')
     <section id="home" class="ftco-section bg-light">
-        <div class="container news-section">
+        <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8 col-lg-12 text-center heading-section ftco-animate">
                     <h2 class="mb-4"><span>Noticias</span> Recientes</h2>
@@ -11,7 +11,7 @@
                 @foreach ($eventos as $evento)
                 <div class="blog-container col-xs-6 col-sm-4">
                     <div class="blog-entry">
-                        <a href="blog-single.html" class="block-20 d-flex align-items-end" style="background-image: url('{{url('/storage/images/eventos/'.$evento->image)}}');">
+                        <a href="{{route('eventos.show',$evento)}}" class="block-20 d-flex align-items-end" style="background-image: url('{{url('/storage/images/eventos/'.$evento->image)}}');">
                             <div class="meta-date text-center p-2">
                                 <?php
                                 $date = new DateTime(explode(" ",$evento->fecha)[0]);
@@ -25,7 +25,7 @@
                             </div>
                         </a>
                         <div class="text bg-white p-4">
-                            <h3 class="heading"><a href="#">{{substr($evento->titulo,0,109)}}</a></h3>
+                            <h3 class="heading"><a href="{{route('eventos.show',$evento)}}">{{substr($evento->titulo,0,109)}}</a></h3>
                             <div class="description-news">
                                 <p> {!!strip_tags($evento->descripcion)!!}</p>
                             </div>
@@ -44,7 +44,7 @@
         </div>
     </section>
     <div class="main">
-        <section class="module" id="services">
+        <section class="module" id="quienes-somos">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6 offset-sm-3">
@@ -124,7 +124,7 @@
                             <div class="somos-extension container">
                                 <div class="row">
                                     <div class="extension-element col-md-6 col-lg-3">
-                                        <a target="_blank" href="https://www.facebook.com/ObserVamos" class="extension-container bg-extension2" style="background-image: url('../public/images/observatorio.jpg');">
+                                        <a target="_blank" href="https://www.facebook.com/ObserVamos" class="extension-container bg-extension2" style="background-image: url('{{asset("/images/observatorio.jpg")}}');">
 
                                         </a>
                                     </div>
@@ -132,7 +132,7 @@
                                     <div class="extension-element col-md-6 col-lg-3">
                                         <a target="_blank" href="http://www.cucsh.udg.mx/cmarti/historia" class="extension-container bg-extension1">
                                             <div>
-                                                <img src="../public/images/martiheader_0.jpg"/>
+                                                <img src="{{asset('images/martiheader_0.jpg')}}"/>
                                                 <p>Cátedra José Martí</p>
                                             </div>
                                         </a>
@@ -140,7 +140,7 @@
                                     
 
                                     <div class="extension-element col-md-6 col-lg-3">
-                                        <a style="background-size:cover; justify-content: flex-end; background-image: url('../public/images/catalogo.jpg');" class="extension-container bg-extension2" target="_blank" href="https://docs.google.com/spreadsheets/d/1IMWvKkySg5aHb3dfXgQj-F7HJ1Cdw8qj/edit#gid=498495349">
+                                        <a style="background-size:cover; justify-content: flex-end; background-image: url('{{asset("/images/catalogo.jpg")}}');" class="extension-container bg-extension2" target="_blank" href="https://docs.google.com/spreadsheets/d/1IMWvKkySg5aHb3dfXgQj-F7HJ1Cdw8qj/edit#gid=498495349">
                                             <div style="color:white; width: 100%; background:rgba(0,0,0,0.7); padding:10px;">
                                                 <p class="m-0">Catálogo de biblioteca</p>
                                             </div>
@@ -150,7 +150,7 @@
                                     <div class="extension-element col-md-6 col-lg-3">
                                         <a class="extension-container bg-extension2" target="_blank" href="https://m.youtube.com/channel/UC4Bt7XtTouqXqFTmztzBELA/featured">
                                             <div>
-                                                <img src="../public/images/banner desmos youtube-02.jpg"/>
+                                                <img src="{{asset('/images/banner desmos youtube-02.jpg')}}"/>
                                             </div>
                                         </a>
                                     </div>
@@ -171,7 +171,7 @@
                 </div>
             </div>
         </section>
-        <section class="module pb-0" id="works">
+        <section class="module pb-0" id="investigadores">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6 offset-sm-3">
@@ -218,7 +218,7 @@
             </div>
         </section>
         <hr class="divider-w">
-        <section class="module" id="team">
+        <section class="module" id="publicaciones">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6 offset-sm-3">
@@ -227,12 +227,12 @@
                 </div>
                 <div class="row">
                     <div class="mb-sm-20 wow fadeInUp col-sm-6 col-md-6">
-                        <a href="{{route('libros.index')}}" class="team-item bg-dark bg-gradient" style='background-image: url("../public/images/Libros.jpg")'>
+                        <a href="{{route('libros.index')}}" class="publicaciones-item bg-dark bg-gradient" style='background-image: url("{{asset('/images/Libros.jpg')}}")'>
                             <p class="u-non-blurred">Libros y capítulos</p>
                         </a>
                     </div>
                     <div class="mb-sm-20 wow fadeInUp col-sm-6 col-md-6" onclick="wow fadeInUp">
-                        <a class="team-item bg-dark bg-gradient" style='background-image: url("../public/images/Revistas.jpg")'>  
+                        <a href="{{route('articulos.index')}}" class="publicaciones-item bg-dark bg-gradient" style='background-image: url("{{asset('/images/Revistas.jpg')}}")'>  
                             <p class="u-non-blurred">Artículos en revistas científicas</p>
                         </a >
                     </div>
@@ -241,7 +241,7 @@
         </section>
 
 
-        <section class="module" id="news">
+        <section class="module" id="divulgacion">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6 offset-sm-3">
