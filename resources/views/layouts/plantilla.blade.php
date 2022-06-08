@@ -40,6 +40,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Volkhov:400i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="{{asset('/lib/animate.css/animate.css')}}" rel="stylesheet">
     <link href="{{asset('/lib/components-font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
     <link href="{{asset('/lib/et-line-font/et-line-font.css')}}" rel="stylesheet">
@@ -89,9 +90,11 @@
 
                 
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+
+                
+            <form class="form-inline my-2 my-lg-0" action="{{route('busqueda.index')}}" enctype="multipart/form-data">
+                <input name="search" class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search" autocomplete="off">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
             </form>
         </div>
     </nav>

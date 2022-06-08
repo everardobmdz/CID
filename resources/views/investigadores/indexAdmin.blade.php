@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-{{-- @if(Auth::check() && ( Auth::user()->role == 'admin' || Auth::user()->role == 'rh' || Auth::user()->role == 'redes' || Auth::user()->role == 'cta')) --}}
+@if(Auth::check() && (Auth::user()->rol == 'admin'))
 
     <div class="container">
         <div class="row">
@@ -12,16 +12,16 @@
                     {{ session('message') }}
                 </div>
             @endif
- {{-- @if($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach($errors->all() as $error)
-                                        <li>{{$error}}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif --}}
-                        <br>
+    @if($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{$error}}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    <br>
 	</div>
     </div>
 <div class="row">
@@ -149,7 +149,7 @@
     //"columnDefs": [{ type: 'portugues', targets: "_all" }],            
 
     </script>
-{{-- @else
-    Acceso No válido --}}
-{{-- @endif --}}
+@else
+    Acceso No válido
+@endif
 @endsection

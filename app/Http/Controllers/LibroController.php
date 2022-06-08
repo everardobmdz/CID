@@ -151,9 +151,10 @@ class LibroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($libro_id)
     {
-        //
+        $libro = Publicacion::where('categoria','=',1)->where("activo","=",1)->find($libro_id);
+        return view('libros.show',compact('libro'));
     }
 
     /**

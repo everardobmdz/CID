@@ -13,7 +13,7 @@
                 <div class="col-md-3 ">
                     <div class="p-2 w-100 h-100 libro-card">
                         <h6 class="text-center" style="color: #b03124">{{$libro->titulo}}</h6>
-                        <p>{{strip_tags($libro->descripcion)}}</p>
+                        <p>{!!strip_tags($libro->descripcion)!!}</p>
                         <a href="#" class="btn btn-danger btn-sm active" data-toggle="modal" data-target="#modalLibro-{{$libro->id}}" role="button" aria-pressed="true">Ver Más</a>
                         
 

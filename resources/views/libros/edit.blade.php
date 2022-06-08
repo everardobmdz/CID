@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        {{-- @if (Auth::check()) --}}
+        @if (Auth::check() && Auth::user()->rol == 'admin')
             @if (session('message'))
                 <div class="alert alert-success">
                     <h2>{{ session('message') }}</h2>
@@ -79,9 +79,9 @@
             </div>
     </div>
 
-    {{-- @else
-        El periodo de Registro de Proyectos a terminado
-    @endif --}}
+    @else
+        Acceso denegado
+    @endif
 
 @endsection
 

@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('eventos', function (Blueprint $table) {
-            $table->string('image');
-            $table->tinyInteger('activo');
+            $table->string('image')->default('defaultPicture.png');
+            $table->tinyInteger('activo')->default(1);
         });
     }
 

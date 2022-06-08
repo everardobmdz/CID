@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('investigadors', function (Blueprint $table) {
-            $table->string('image')->default('defaultPicture.png');
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('rol')->default('user');
         });
     }
 
@@ -25,7 +25,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('investigadors', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             //
         });
     }

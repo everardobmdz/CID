@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('grado',150);
             $table->string('lineasInves');
             $table->string('correo');   
-            $table->string('proyecto_invest');   
-            $table->string('reconocimientos');   
+            $table->string('proyecto_invest')->nullable();   
+            $table->string('reconocimientos')->nullable();   
             $table->text('publicaciones');   
 
             $table->timestamps();

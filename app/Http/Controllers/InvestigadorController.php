@@ -184,10 +184,12 @@ class InvestigadorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($investigador_id)
     {
-        //
+        $investigador = Investigador::where("activo","=",1)->find($investigador_id);
+        return view('investigadores.show',compact('investigador'));
     }
+
 
     /**
      * Show the form for editing the specified resource.

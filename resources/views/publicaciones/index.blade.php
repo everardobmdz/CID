@@ -1,6 +1,6 @@
 @extends('layouts.plantilla')
 @section('content')
-<section class="module" id="team">
+<section class="module" id="publicaciones">
     <div class="container">
         <div class="row">
             <div class="col-sm-6 offset-sm-3">
@@ -9,12 +9,12 @@
         </div>
         <div class="row">
             <div class="mb-sm-20 wow fadeInUp col-sm-6 col-md-6">
-                <a href="{{route('libros.index')}}" class="team-item bg-dark bg-gradient" style='background-image: url("../public/images/Libros.jpg")'>
+                <a href="{{route('libros.index')}}" class="publicaciones-item bg-dark bg-gradient" style='background-image: url("{{asset('/images/Libros.jpg')}}")'>
                     <p class="u-non-blurred">Libros y capítulos</p>
                 </a>
             </div>
             <div class="mb-sm-20 wow fadeInUp col-sm-6 col-md-6" onclick="wow fadeInUp">
-                <a href="{{route('articulos.index')}}" class="team-item bg-dark bg-gradient" style='background-image: url("../public/images/Revistas.jpg")'>  
+                <a href="{{route('articulos.index')}}" class="publicaciones-item bg-dark bg-gradient" style='background-image: url("{{asset('/images/Revistas.jpg')}}")'>  
                     <p class="u-non-blurred">Artículos en revistas científicas</p>
                 </a >
             </div>

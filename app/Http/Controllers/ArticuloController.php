@@ -14,7 +14,7 @@ class ArticuloController extends Controller
      */
     public function index()
     {
-        $articulos = Publicacion::where('activo','=',1)->where('categoria','=',2)->orderBy('titulo','desc')->paginate(10);
+        $articulos = Publicacion::where('activo','=',1)->where('categoria','=',2)->orderBy('titulo','desc')->paginate(20);
         return view('articulos.index',compact('articulos'));
     }
 
@@ -160,10 +160,12 @@ class ArticuloController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response2
      */
-    public function show($id)
+    public function show($articulo_id)
     {
-        //
+        $articulo = Publicacion::where('categoria','=',2)->where("activo","=",1)->find($articulo_id);
+        return view('articulos.show',compact('articulo'));
     }
+
     public function getImage($filename){
         $file = Storage::disk('images-publicaciones')->get($filename);
         return new Response($file, 200);

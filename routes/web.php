@@ -4,10 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InvestigadorController;
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\ArticuloController;
+use App\Http\Controllers\BusquedaController;
 use App\Http\Controllers\DivulgacionController;
 use App\Http\Controllers\LibroController;
 use App\Http\Controllers\PublicacionController;
 use App\Http\Controllers\WelcomeController;
+use App\Models\Investigador;
 use App\Models\Publicacion;
 use Illuminate\Support\Facades\Auth;
 
@@ -61,13 +63,19 @@ Route::get('/eventos',[EventoController::class,'index']);
 Route::resource('investigadores', 'App\Http\Controllers\InvestigadorController');
 Route::resource('/eventos','App\Http\Controllers\EventoController');
 Route::resource('/','App\Http\Controllers\WelcomeController');
-Route::resource('libros',LibroController::class);
+Route::resource('/libros',LibroController::class);
 Route::resource('articulos',ArticuloController::class);
 Route::resource('divulgaciones',DivulgacionController::class);
 Route::resource('publicaciones',PublicacionController::class);
+Route::resource('busqueda',BusquedaController::class);
+
 
 Route::get('eventos/{evento}',[EventoController::class,'show'])->name('eventos.show'); 
 Route::get('divulgaciones/{divulgacion}',[EventoController::class,'show'])->name('divulgaciones.show'); 
+Route::get('investigadores/{investigador}',[InvestigadorController::class,'show'])->name('investigadores.show'); 
+Route::get('libros/{libro}',[LibroController::class,'show'])->name('libros.show');
+Route::get('articulos/{articulo}',[ArticuloController::class,'show'])->name('articulos.show'); 
+
 
 Route::get('/images/investigadores/{filename}', array(
     'as' => 'images',

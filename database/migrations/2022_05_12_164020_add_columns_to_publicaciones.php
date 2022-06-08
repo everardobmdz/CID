@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('publicacions', function (Blueprint $table) {
-            $table->string('anio');
-            $table->string('image');
+            $table->string('anio')->nullable();
+            $table->string('image')->nullable();
         });
     }
 

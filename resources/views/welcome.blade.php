@@ -130,7 +130,7 @@
                                     </div>
                                     
                                     <div class="extension-element col-md-6 col-lg-3">
-                                        <a target="_blank" href="http://www.cucsh.udg.mx/cmarti/historia" class="extension-container bg-extension1">
+                                        <a target="_blank" href="http://www.cucsh.udg.mx/cmarti/" class="extension-container bg-extension1">
                                             <div>
                                                 <img src="{{asset('images/martiheader_0.jpg')}}"/>
                                                 <p>Cátedra José Martí</p>
